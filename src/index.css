@@ -14,7 +14,7 @@
   }
 
   button {
-    @apply text-white border bg-[#006D77] border-[#006D77] px-[44px] py-[9px]
-    rounded-r-[8.82px] rounded-bl-[8.82px] hover:shadow-lg;
+    @apply text-[#EDF6F9] bg-[#0199A7] px-[44px] py-[9px]
+    rounded-r-[8.82px] rounded-bl-[8.82px] hover:shadow-lg hover:bg-[#24CFDF];
   }
 }

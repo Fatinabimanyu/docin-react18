@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DocinLogo from "../assets/images/docin-logo.png";
+import DocinLogo from "../assets/images/logo-docin.svg";
 
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
@@ -11,8 +11,8 @@ export default function Header() {
   };
 
   return (
-    <div className="w-full h-[90px]">
-      <div className="max-w-[1240px] px-4 mx-auto flex justify-between items-center h-full">
+    <div className="w-full h-[90px] bg-hijau-muda">
+      <div className="px-[200px] mx-auto flex justify-between items-center h-full">
         <div className="flex items-center">
           <a href="#home">
             <img src={DocinLogo} alt="docin-logo" />
@@ -21,17 +21,12 @@ export default function Header() {
         <div className="hidden md:flex">
           <ul className="flex items-center font-medium">
             <li>
-              <a href="#home" className="hover:text-[#006D77]">
+              <a href="#home" className="hover:text-hijau">
                 Beranda
               </a>
             </li>
             <li>
-              <a href="#search-doctor" className="hover:text-[#006D77]">
-                Cari Dokter
-              </a>
-            </li>
-            <li>
-              <a href="#how-it-works" className="hover:text-[#006D77]">
+              <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
             </li>
@@ -49,29 +44,24 @@ export default function Header() {
         >
           <ul className="font-medium">
             <li className="border-b-2 border-zinc-300 w-full">
-              <a href="#home" className="hover:text-[#006D77]">
+              <a href="#home" className="hover:text-hijau">
                 Beranda
               </a>
             </li>
             <li className="border-b-2 border-zinc-300 w-full">
-              <a href="#search-doctor" className="hover:text-[#006D77]">
-                Cari Dokter
-              </a>
-            </li>
-            <li className="border-b-2 border-zinc-300 w-full">
-              <a href="#how-it-works" className="hover:text-[#006D77]">
+              <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
             </li>
-            <button className="m-4">Sign In</button>
+            <button className="m-4 hover:bg-hitam">Sign In</button>
           </ul>
         </div>
 
         <div onClick={handleNav} className="block md:hidden">
           {nav ? (
-            <IoMdClose size={30} className="text-black" />
+            <IoMdClose size={30} className="text-hitam" />
           ) : (
-            <HiOutlineMenu size={30} className="text-black" />
+            <HiOutlineMenu size={30} className="text-hitam" />
           )}
         </div>
       </div>

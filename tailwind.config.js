@@ -18,6 +18,20 @@ module.exports = {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
+
+    extend: {
+      fontFamily:{
+        'poppins': ['Poppins', 'sans-serif']
+      },
+
+      colors:{
+        'hijau': '#0199A7',
+        'putih': '#EDF6F9',
+        'hijau-muda': '#DDEFEE',
+        'hitam': '#162F3D'
+      }
+    },
+    
   },
   plugins: [],
 };
