@@ -1,12 +1,13 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
+import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Hero />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </Router>
   );
 }
 
