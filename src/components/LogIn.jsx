@@ -8,8 +8,8 @@ export default function LogIn() {
           <h5 className="text-center font-bold text-[20px] mb-[20px] xl:text-[35px] text-white xl:mb-[50px]">Log In</h5>
           <div className="xl:gap-x-5 flex-col xl:flex-row flex">
           </div>
-          <p className="font-bold text-[12px] text-putih mb-[10px]">Username</p>
-          <input placeholder="Enter your username"  className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"></input>
+          <p className="font-bold text-[12px] text-putih mb-[10px]">E-mail</p>
+          <input placeholder="Enter your email address"  className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Password</p>
           <input placeholder="Enter your password" className="mb-[10px] bg-[#878FB533] p-[10px] text-putih"></input>
           <button className="rounded-none my-[20px] xl:my-[40px]">Log In</button>
