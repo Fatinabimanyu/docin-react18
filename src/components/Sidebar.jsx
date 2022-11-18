@@ -1,5 +1,5 @@
 import React from "react";
-import DocinLogo from "../assets/images/docin-logo.png";
+import DocinLogo from "../assets/images/logo-docin.svg";
 import { BiEdit, BiLogOut } from "react-icons/bi";
 import { HiOutlineHome, HiOutlineClipboardCheck } from "react-icons/hi";
 
@@ -37,7 +37,10 @@ export default function Sidebar() {
                   className="px-2 py-2 flex flex-row items-center"
                   key={index}
                 >
-                  <a href={val.href} className="flex flex-row items-center">
+                  <a
+                    href={val.href}
+                    className="hover:text-hijau flex flex-row items-center"
+                  >
                     <div className="mr-5">{val.icon}</div>
                     <div>{val.name}</div>
                   </a>
@@ -53,7 +56,10 @@ export default function Sidebar() {
             {settings.map((val, index) => {
               return (
                 <li className="px-2 py-2" key={index}>
-                  <a href={val.href} className="flex flex-row items-center">
+                  <a
+                    href={val.href}
+                    className="hover:text-hijau flex flex-row items-center"
+                  >
                     <div className="mr-5">{val.icon}</div>
                     <div>{val.name}</div>
                   </a>

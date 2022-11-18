@@ -15,23 +15,34 @@ export default function Header() {
       <div className="px-[50px] md:px-[100px] lg:px-[100px] xl:px-[200px] mx-auto flex justify-between items-center h-full">
         <div className="flex items-center">
           <a href="#home">
-            <img src={DocinLogo} alt="docin-logo" className="w-[65%] md:w-[100%] lg:w-[100%]"/>
+            <img
+              src={DocinLogo}
+              alt="docin-logo"
+              className="w-[65%] md:w-[100%] lg:w-[100%]"
+            />
           </a>
         </div>
         <div className="hidden md:flex">
-          {/* <ul className="flex items-center font-medium">
+          <ul className="flex items-center font-medium">
             <li>
               <a href="#home" className="hover:text-hijau">
                 Beranda
               </a>
             </li>
             <li>
+              <a href="#search-doctor" className="hover:text-hijau">
+                Cari Dokter
+              </a>
+            </li>
+            <li>
               <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
-            </li> */}
-            <button className="ml-5">Sign In</button>
-          {/* </ul> */}
+            </li>
+            <a href="/login">
+              <button className="ml-5">Sign In</button>
+            </a>
+          </ul>
         </div>
 
         {/* Responsive Section */}
