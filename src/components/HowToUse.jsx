@@ -7,33 +7,31 @@ import Icon4 from '../assets/images/icon4.svg'
 export default function HowToUse() {
   return (
     <>
-        <div className='h-[100vh] bg-putih items-center' id='carakerja'>
-          <div className='py-[250px]'>
-            <p className='text-4xl font-poppins text-hitam text-center font-bold'>4 Langkah Mudah Menggunakan Doc.in</p>
-            <div className='grid grid-cols-4 mx-[200px] mt-[80px] text-center'>
+        <section className='h-full lg:h-[100vh] py-[100px] lg:py-0 bg-putih items-center flex-col flex justify-center mx' id='carakerja'>
+            <p className='text-2xl md:text-3xl xl:text-4xl mb-12 font-poppins text-hitam text-center font-bold px-5'>4 Langkah Mudah Menggunakan Doc.in</p>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:flex text-center gap-y-12 justify-center md:gap-x-20 md:mt-10'>
               <div className='flex flex-col items-center'>
-                <img src={Icon1} className='w-[125px]'></img>
-                <p className='text-xl text-hijau font-poppins font-bold mt-10'>Masuk ke Akun Anda</p>
-                <p className='text-base text-hitam font-poppins font-[500] mt-3 w-[280px]'>Masuk atau buat akun dengan email agar dapat mengakses fitur Doc.In secara lengkap.</p>
+                <img src={Icon1} className='w-[25%] md:w-[35%] xl:w-[125px]'></img>
+                <p className='text-lg text-hijau font-poppins font-bold mt-5'>1. Masuk ke Akun Anda</p>
+                <p className='text-base text-hitam font-poppins font-[500] mt-3 md:mt-0 w-[280px]'>Masuk atau buat akun dengan email agar dapat mengakses fitur Doc.In secara lengkap.</p>
+              </div>
+              <div className='flex flex-col items-center mt-0'>
+                <img src={Icon2} className='w-[25%] md:w-[35%] xl:w-[125px]'></img>
+                <p className='text-lg text-hijau font-poppins font-bold mt-5'>2. Cari Dokter yang Sesuai</p>
+                <p className='text-base text-hitam font-poppins font-[500] mt-3 md:mt-0 w-[280px]'>Cari dokter dengan spesialisasi sesuai dengan kebutuhan Anda melalui fitur Search Doctor.</p>
+              </div>
+              <div className='flex flex-col items-center mt-0'>
+                <img src={Icon3} className='w-[25%] md:w-[35%] xl:w-[125px]'></img>
+                <p className='text-lg text-hijau font-poppins font-bold mt-5'>3. Rencanakan Janji Temu</p>
+                <p className='text-base text-hitam font-poppins font-[500] mt-3 md:mt-0 w-[280px]'>Rencanakan janji temu dengan dokter pilihan Anda melalui fitur Create Appointment.</p>
               </div>
               <div className='flex flex-col items-center'>
-                <img src={Icon2} className='w-[125px]'></img>
-                <p className='text-xl text-hijau font-poppins font-bold mt-10'>Cari Dokter yang Sesuai</p>
-                <p className='text-base text-hitam font-poppins font-[500] mt-3 w-[280px]'>Cari dokter dengan spesialisasi sesuai dengan kebutuhan Anda melalui fitur Search Doctor.</p>
+                <img src={Icon4} className='w-[25%] md:w-[35%] xl:w-[125px]'></img>
+                <p className='text-lg text-hijau font-poppins font-bold mt-5'>4. Isi Form Janji Temu</p>
+                <p className='text-base text-hitam font-poppins font-[500] mt-3 md:mt-0 w-[280px]'>Lengkapi formulir dan pantau respon terkait janji temu Anda pada menu My Appointment.</p>
               </div>
-              <div className='flex flex-col items-center'>
-                <img src={Icon3} className='w-[125px]'></img>
-                <p className='text-xl text-hijau font-poppins font-bold mt-10'>Rencanakan Janji Temu</p>
-                <p className='text-base text-hitam font-poppins font-[500] mt-3 w-[280px]'>Rencanakan janji temu dengan dokter pilihan Anda melalui fitur Create Appointment.</p>
-              </div>
-              <div className='flex flex-col items-center'>
-                <img src={Icon4} className='w-[125px]'></img>
-                <p className='text-xl text-hijau font-poppins font-bold mt-10'>Isi Form Janji Temu</p>
-                <p className='text-base text-hitam font-poppins font-[500] mt-3 w-[280px]'>Lengkapi formulir dan pantau respon terkait janji temu Anda pada menu My Appointment.</p>
-              </div>
-            </div>
-          </div>          
-        </div>
+            </div>         
+        </section>
     </>
   )
 }

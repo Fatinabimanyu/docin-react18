@@ -12,14 +12,14 @@ export default function Header() {
 
   return (
     <div className="w-full h-[90px] bg-hijau-muda">
-      <div className="px-[200px] mx-auto flex justify-between items-center h-full">
+      <div className="px-[50px] md:px-[100px] lg:px-[100px] xl:px-[200px] mx-auto flex justify-between items-center h-full">
         <div className="flex items-center">
           <a href="#home">
-            <img src={DocinLogo} alt="docin-logo" />
+            <img src={DocinLogo} alt="docin-logo" className="w-[65%] md:w-[100%] lg:w-[100%]"/>
           </a>
         </div>
         <div className="hidden md:flex">
-          <ul className="flex items-center font-medium">
+          {/* <ul className="flex items-center font-medium">
             <li>
               <a href="#home" className="hover:text-hijau">
                 Beranda
@@ -29,21 +29,21 @@ export default function Header() {
               <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
-            </li>
+            </li> */}
             <button className="ml-5">Sign In</button>
-          </ul>
+          {/* </ul> */}
         </div>
 
         {/* Responsive Section */}
         <div
           className={
             nav
-              ? "w-full bg-zinc-200 text-black absolute top-[90px] left-0 flex justify-center text-center"
+              ? "w-full bg-putih text-hitam absolute top-[90px] left-0 flex justify-center text-center"
               : "absolute left-[-100%]"
           }
         >
           <ul className="font-medium">
-            <li className="border-b-2 border-zinc-300 w-full">
+            {/* <li className="border-b-2 border-zinc-300 w-full">
               <a href="#home" className="hover:text-hijau">
                 Beranda
               </a>
@@ -52,7 +52,7 @@ export default function Header() {
               <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
-            </li>
+            </li> */}
             <button className="m-4 hover:bg-hitam">Sign In</button>
           </ul>
         </div>
