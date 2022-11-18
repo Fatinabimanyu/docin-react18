@@ -25,7 +25,7 @@ export default function LogInForm() {
         toast.error(response.message);
       } else {
         toast.success("Login sukses!");
-        navigate("/");
+        navigate("/user-dashboard");
       }
     }
   };
