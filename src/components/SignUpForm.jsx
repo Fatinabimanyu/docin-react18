@@ -24,14 +24,21 @@ export default function SignUpForm() {
       password,
       address,
     };
-    if (!email || !password) {
-      toast.error("Email dan password wajib diisi!");
+    if (
+      !firstName ||
+      !lastName ||
+      !username ||
+      !email ||
+      !password ||
+      !address
+    ) {
+      toast.error("Semua form wajib diisi!");
     } else {
       const response = await setSignUp(data);
       if (response.error) {
         toast.error(response.message);
       } else {
-        toast.success(response.message);
+        toast.success("Signup sukses!");
         navigate("/");
       }
     }

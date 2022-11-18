@@ -24,7 +24,7 @@ export default function LogInForm() {
       if (response.error) {
         toast.error(response.message);
       } else {
-        toast.success(response.message);
+        toast.success("Login sukses!");
         navigate("/");
       }
     }
