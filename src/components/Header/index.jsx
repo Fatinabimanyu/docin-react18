@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import DocinLogo from "../assets/images/logo-docin.svg";
-
+import DocinLogo from "../../assets/images/logo-docin.svg";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
+import Auth from "./Auth";
+import { Link } from "react-scroll";
 
 export default function Header() {
   const [nav, setNav] = useState(false);
@@ -35,13 +36,13 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a href="#how-it-works" className="hover:text-hijau">
-                Cara Kerja
-              </a>
+              <Link to="how-it-works" smooth={true}>
+                <a href="/" className="hover:text-hijau">
+                  Cara Kerja
+                </a>
+              </Link>
             </li>
-            <a href="/login">
-              <button className="ml-5">Sign In</button>
-            </a>
+            <Auth />
           </ul>
         </div>
 
@@ -54,7 +55,7 @@ export default function Header() {
           }
         >
           <ul className="font-medium">
-            {/* <li className="border-b-2 border-zinc-300 w-full">
+            <li className="border-b-2 border-zinc-300 w-full">
               <a href="#home" className="hover:text-hijau">
                 Beranda
               </a>
@@ -63,7 +64,7 @@ export default function Header() {
               <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
-            </li> */}
+            </li>
             <button className="m-4 hover:bg-hitam">Sign In</button>
           </ul>
         </div>

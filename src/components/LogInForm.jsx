@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setLogin } from "../services/auth";
+import Cookies from "js-cookie";
 
 export default function LogInForm() {
   const [email, setEmail] = useState("");
@@ -25,7 +26,10 @@ export default function LogInForm() {
         toast.error(response.message);
       } else {
         toast.success("Login sukses!");
-        navigate("/user-dashboard");
+        const { token } = response.data;
+        const tokenBase64 = btoa(token);
+        Cookies.set("token", tokenBase64, { expires: 1 });
+        navigate("/");
       }
     }
   };
