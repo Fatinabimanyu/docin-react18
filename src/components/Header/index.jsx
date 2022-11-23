@@ -15,7 +15,7 @@ export default function Header() {
     <div className="w-full h-[90px] bg-hijau-muda">
       <div className="px-[50px] md:px-[100px] lg:px-[100px] xl:px-[200px] mx-auto flex justify-between items-center h-full">
         <div className="flex items-center">
-          <a href="#home">
+          <a href="/">
             <img
               src={DocinLogo}
               alt="docin-logo"
@@ -26,12 +26,12 @@ export default function Header() {
         <div className="hidden md:flex">
           <ul className="flex items-center font-medium">
             <li>
-              <a href="#home" className="hover:text-hijau">
+              <a href="/" className="hover:text-hijau">
                 Beranda
               </a>
             </li>
             <li>
-              <a href="#search-doctor" className="hover:text-hijau">
+              <a href="/find-doctor" className="hover:text-hijau">
                 Cari Dokter
               </a>
             </li>
