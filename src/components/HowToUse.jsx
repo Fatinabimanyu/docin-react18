@@ -21,7 +21,7 @@ export default function HowToUse() {
           data-aos="fade-up"
           className="text-2xl md:text-3xl xl:text-4xl mb-12 font-poppins text-hitam text-center font-bold px-5"
         >
-          4 Langkah Mudah Menggunakan Doc.in
+          4 Langkah Mudah Menggunakan Doc.In
         </p>
         <div
           data-aos="fade-up"

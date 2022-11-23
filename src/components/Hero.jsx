@@ -17,7 +17,7 @@ export default function Hero() {
             Temukan Dokter Pilihan <br /> Sesuai Kebutuhan Anda!
           </p>
           <p className="my-5 lg:leading-normal">
-            Doc.in membantu Anda untuk membuat janji temu dengan dokter yang
+            Doc.In membantu Anda untuk membuat janji temu dengan dokter yang
             sesuai dengan kebutuhan Anda dan dengan proses yang mudah dan
             terintegrasi antar kedua belah pihak.
           </p>

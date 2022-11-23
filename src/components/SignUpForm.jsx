@@ -129,7 +129,7 @@ export default function SignUpForm() {
           <p className="text-center text-[#83C5BE] text-[12px] xl:text-[15px]">
             Already have an account?{" "}
             <span className="text-putih">
-              <a href="/login">Login</a>
+              <a href="/login-user">Login</a>
             </span>
           </p>
         </form>

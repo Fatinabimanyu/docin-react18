@@ -18,7 +18,7 @@ export default function Auth() {
   }
 
   return (
-    <a href="/login">
+    <a href="/login-user">
       <button className="ml-5">Sign In</button>
     </a>
   );
