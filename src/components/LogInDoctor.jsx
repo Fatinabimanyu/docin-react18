@@ -43,7 +43,7 @@ export default function LogInForm() {
         }}
       >
         <form
-          className="flex-col flex px-[30px] w-[350px] py-[30px] xl:w-auto xl:px-[90px] xl:py-[45px] rounded-[18px]"
+          className="flex-col flex px-[30px] w-[350px] md:w-[600px] xl:w-[800px] py-[30px] xl:px-[90px] xl:py-[45px] rounded-[18px]"
           style={{
             background:
               " linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(22, 47, 61, 0.6)",
