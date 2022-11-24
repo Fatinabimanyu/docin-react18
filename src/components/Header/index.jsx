@@ -45,7 +45,7 @@ export default function Header() {
         <div
           className={
             nav
-              ? "w-full bg-putih text-hitam absolute top-[90px] left-0 flex justify-center text-center"
+              ? "w-full bg-putih text-hitam absolute top-[90px] left-0 flex justify-center text-center z-20"
               : "absolute left-[-100%]"
           }
         >

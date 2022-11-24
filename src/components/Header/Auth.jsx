@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
+import { Dropdown } from "flowbite-react";
 
 export default function Auth() {
   const [isLoginUser, setIsLoginUser] = useState(false);
@@ -25,15 +26,39 @@ export default function Auth() {
             Cari Dokter
           </a>
         </li>
-        <a href="/user-dashboard">
-          <button className="mx-5">Menu</button>
-        </a>
+        <div className="bg-hijau rounded-lg mx-5">
+          <Dropdown label="Menu" color="" className="">
+            <Dropdown.Header>
+              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm font-medium truncate">
+                bonnie@flowbite.com
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Edit Profile</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>Sign out</Dropdown.Item>
+          </Dropdown>
+        </div>
       </>
     );
   } else if (isLoginDoctor) {
-    <a href="/doctor-dashboard">
-      <button className="mx-5">Menu</button>
-    </a>;
+    return (
+      <div className="bg-hijau rounded-lg mx-5">
+        <Dropdown label="Menu" color="" className="">
+          <Dropdown.Header>
+            <span className="block text-sm">Bonnie Green</span>
+            <span className="block text-sm font-medium truncate">
+              bonnie@flowbite.com
+            </span>
+          </Dropdown.Header>
+          <Dropdown.Item>Dashboard</Dropdown.Item>
+          <Dropdown.Item>Edit Profile</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item>Sign out</Dropdown.Item>
+        </Dropdown>
+      </div>
+    );
   }
 
   return (
