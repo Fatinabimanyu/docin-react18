@@ -31,11 +31,6 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a href="/find-doctor" className="hover:text-hijau">
-                Cari Dokter
-              </a>
-            </li>
-            <li>
               <Link to="how-it-works" smooth={true}>
                 <a href="/" className="hover:text-hijau">
                   Cara Kerja
@@ -61,11 +56,11 @@ export default function Header() {
               </a>
             </li>
             <li className="border-b-2 border-zinc-300 w-full">
-              <a href="#how-it-works" className="hover:text-hijau">
+              <a href="how-it-works" className="hover:text-hijau">
                 Cara Kerja
               </a>
             </li>
-            <button className="m-4 hover:bg-hitam">Masuk</button>
+            <Auth />
           </ul>
         </div>
 

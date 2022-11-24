@@ -37,7 +37,7 @@ export default function LogInForm() {
   return (
     <>
       <div
-        className="h-[100vh] flex items-center justify-center "
+        className="h-[100vh] flex items-center justify-center"
         style={{
           background: "linear-gradient(90deg, #0199A7 0%, #B4DCDA 100%)",
         }}

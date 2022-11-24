@@ -1,5 +1,6 @@
 import React from "react";
-import DocinLogo from "../assets/images/logo-docin.svg";
+import DocinLogo from "../../assets/images/logo-docin.svg";
+import Auth from "./Auth";
 
 export default function Footer() {
   return (
@@ -41,18 +42,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div>
-            <h2 className="mb-6 font-semibold text-gray-900">
-              Apakah Anda Seorang Dokter?
-            </h2>
-            <ul className="text-gray-600">
-              <li className="mb-4 p-0 py-1 font-medium">
-                <a href="/signup-doctor">
-                  <button>Daftar</button>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <Auth />
         </div>
       </div>
       <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
