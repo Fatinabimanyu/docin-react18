@@ -65,7 +65,7 @@ export default function Header() {
                 Cara Kerja
               </a>
             </li>
-            <button className="m-4 hover:bg-hitam">Sign In</button>
+            <button className="m-4 hover:bg-hitam">Masuk</button>
           </ul>
         </div>
 

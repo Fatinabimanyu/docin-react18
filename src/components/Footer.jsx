@@ -12,16 +12,16 @@ export default function Footer() {
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
           <div>
-            <h2 className="mb-6 font-semibold text-gray-900">About Us</h2>
+            <h2 className="mb-6 font-semibold text-gray-900">Tentang Kami</h2>
             <ul className="text-gray-600">
               <li className="mb-4 py-1">
                 <a href="#" className="hover:underline">
-                  Our Team
+                  Tim Kami
                 </a>
               </li>
               <li className="mb-4 py-1">
                 <a href="#" className="hover:underline">
-                  Contact
+                  Kontak
                 </a>
               </li>
             </ul>
@@ -31,12 +31,12 @@ export default function Footer() {
             <ul className="text-gray-600">
               <li className="mb-4 py-1">
                 <a href="#" className="hover:underline">
-                  Privacy Policy
+                  Kebijakan Privasi
                 </a>
               </li>
               <li className="mb-4 py-1">
                 <a href="#" className="hover:underline">
-                  Terms &amp; Conditions
+                  Syarat &amp; Ketentuan
                 </a>
               </li>
             </ul>
@@ -48,7 +48,7 @@ export default function Footer() {
             <ul className="text-gray-600">
               <li className="mb-4 py-1 font-medium">
                 <a href="/signup-doctor">
-                  <button>Register</button>
+                  <button>Daftar</button>
                 </a>
               </li>
             </ul>
