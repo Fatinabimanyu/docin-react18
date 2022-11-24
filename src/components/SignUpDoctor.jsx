@@ -1,45 +1,45 @@
 import React, { useState } from "react";
-import { setSignUp } from "../services/auth";
+import { setSignUpDoctor } from "../services/auth";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [speciality, setSpeciality] = useState("");
   const [address, setAddress] = useState("");
+  const [appointmentFee, setAppointmentFee] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const onSubmit = async () => {
     const data = {
-      firstName,
-      lastName,
-      username,
+      name,
       email,
+      speciality,
       password,
       address,
+      appointmentFee,
     };
     if (
-      !firstName ||
-      !lastName ||
-      !username ||
+      !name ||
       !email ||
+      !speciality ||
       !password ||
-      !address
+      !address ||
+      !appointmentFee
     ) {
       toast.error("Semua form wajib diisi!");
     } else {
-      const response = await setSignUp(data);
+      const response = await setSignUpDoctor(data);
       if (response.error) {
         toast.error(response.message);
       } else {
         toast.success("Signup sukses!");
-        navigate("/");
+        navigate("/login-doctor");
       }
     }
   };
@@ -60,31 +60,18 @@ export default function SignUpForm() {
           }}
         >
           <h5 className="text-center font-bold text-[20px] mb-[20px] xl:text-[35px] text-white xl:mb-[50px]">
-            Sign Up
+            Sign Up Doctor
           </h5>
-          <div className="xl:gap-x-5 flex-col xl:flex-row flex">
-            <div className="flex flex-col">
-              <p className="font-bold text-[12px] text-putih mb-[10px]">
-                First Name
-              </p>
-              <input
-                placeholder="Enter your first name"
-                className="mb-[10px] bg-[#878FB533] xl:p-[10px] text-putih p-[5px] w-auto"
-                value={firstName}
-                onChange={(event) => setFirstName(event.target.value)}
-              ></input>
-            </div>
-            <div className="flex flex-col">
-              <p className="font-bold text-[12px] text-putih mb-[10px]">
-                Last Name
-              </p>
-              <input
-                placeholder="Enter your last name"
-                className="bg-[#878FB533] xl:p-[10px] p-[5px] mb-[10px] text-putih"
-                value={lastName}
-                onChange={(event) => setLastName(event.target.value)}
-              ></input>
-            </div>
+          <div className="flex flex-col">
+            <p className="font-bold text-[12px] text-putih mb-[10px]">
+              Full Name (with degree)
+            </p>
+            <input
+              placeholder="Enter your first name"
+              className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            ></input>
           </div>
           <p className="font-bold text-[12px] text-putih mb-[10px]">E-mail</p>
           <input
@@ -94,13 +81,15 @@ export default function SignUpForm() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           ></input>
-          <p className="font-bold text-[12px] text-putih mb-[10px]">Username</p>
+          <p className="font-bold text-[12px] text-putih mb-[10px]">
+            Speciality
+          </p>
           <input
-            type="username"
-            placeholder="Enter your username"
+            type="speciality"
+            placeholder="Enter your speciality"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={speciality}
+            onChange={(event) => setSpeciality(event.target.value)}
           ></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Address</p>
           <input
@@ -109,6 +98,16 @@ export default function SignUpForm() {
             className="mb-[10px] bg-[#878FB533] p-[10px] text-putih"
             value={address}
             onChange={(event) => setAddress(event.target.value)}
+          ></input>
+          <p className="font-bold text-[12px] text-putih mb-[10px]">
+            Appointment Fee (in rupiah)
+          </p>
+          <input
+            type="appointmentFee"
+            placeholder="Set your appointment fee"
+            className="mb-[10px] bg-[#878FB533] p-[10px] text-putih"
+            value={appointmentFee}
+            onChange={(event) => setAppointmentFee(event.target.value)}
           ></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Password</p>
           <input
@@ -129,7 +128,7 @@ export default function SignUpForm() {
           <p className="text-center text-[#83C5BE] text-[12px] xl:text-[15px]">
             Already have an account?{" "}
             <span className="text-putih">
-              <a href="/login-user">Login</a>
+              <a href="/login-doctor">Login</a>
             </span>
           </p>
         </form>

@@ -1,10 +1,10 @@
 import React from "react";
-import LogInUser from "../components/LogInUser";
+import LogInDoctor from "../components/LogInDoctor";
 
 export default function UserLogIn() {
   return (
     <>
-      <LogInUser />
+      <LogInDoctor />
     </>
   );
 }

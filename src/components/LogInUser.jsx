@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setLogin } from "../services/auth";
+import { setLoginUser } from "../services/auth";
 import Cookies from "js-cookie";
 
 export default function LogInForm() {
@@ -21,7 +21,7 @@ export default function LogInForm() {
     if (!email || !password) {
       toast.error("Email dan password wajib diisi!");
     } else {
-      const response = await setLogin(data);
+      const response = await setLoginUser(data);
       if (response.error) {
         toast.error(response.message);
       } else {
@@ -50,7 +50,7 @@ export default function LogInForm() {
           }}
         >
           <h5 className="text-center font-bold text-[20px] mb-[20px] xl:text-[35px] text-white xl:mb-[50px]">
-            Log In
+            Log In User
           </h5>
           <div className="xl:gap-x-5 flex-col xl:flex-row flex"></div>
           <p className="font-bold text-[12px] text-putih mb-[10px]">E-mail</p>

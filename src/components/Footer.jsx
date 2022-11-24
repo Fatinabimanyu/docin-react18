@@ -47,7 +47,7 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-600">
               <li className="mb-4 py-1 font-medium">
-                <a href="/login-doctor">
+                <a href="/signup-doctor">
                   <button>Register</button>
                 </a>
               </li>
