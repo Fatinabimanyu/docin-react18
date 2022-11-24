@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <>
-      <div className="h-full md:h-[100vh] bg-hijau-muda px-[50px] py-[50px] md:px-[100px] xl:px-[200px] xl:pb-[100px] flex flex-col-reverse md:grid md:grid-cols-2 md:gap-[100px] lg:gap-[200px] items-center">
+      <div className="z-10 h-full md:h-[100vh] bg-hijau-muda px-[50px] py-[50px] md:px-[100px] xl:px-[200px] xl:pb-[100px] flex flex-col-reverse md:grid md:grid-cols-2 md:gap-[100px] lg:gap-[200px] items-center">
         <div className="text-center text-hitam md:text-justify justify-center">
           <p className="text-3xl leading-normal font-bold lg:text-4xl lg:leading-normal">
             Temukan Dokter Pilihan <br /> Sesuai Kebutuhan Anda!

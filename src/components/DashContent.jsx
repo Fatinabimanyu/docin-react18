@@ -6,7 +6,9 @@ export default function DashContent() {
     <section className="w-full bg-hijau-muda h-[100vh] flex justify-center ">
       <div className="absolute flex-col text-center font-bold text-[20px] mt-[100px] xl:text-[35px] text-hitam xl:mb-[10px]">Hi, (username)</div>
       <div className="items-center flex flex-row"></div>
-        <img src={HeroImg} className="w-80 h-80 object-cover rounded-full mr-[90px] mt-[280px]" alt="" />
+      <div>
+        <img src={HeroImg} className="w-80 h-80 object-cover rounded-full mr-[90px] mt-[280px] z-0" alt="" />
+        </div>
             <div className="h-[100vh] flex items-center justify-center ">
               <form className="flex-col flex px-[10px] w-[300px] py-[10px] xl:w-auto xl:px-[10px] xl:py-[45px] rounded-[18px]">
                   <div className="xl:gap-x-5 flex-col xl:flex-row flex">

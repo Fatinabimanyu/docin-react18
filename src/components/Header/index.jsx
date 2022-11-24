@@ -35,7 +35,7 @@ export default function Header() {
                 Cari Dokter
               </a>
             </li>
-            <li>
+            <li className="mr-5">
               <Link to="how-it-works" smooth={true}>
                 <a href="/" className="hover:text-hijau">
                   Cara Kerja
@@ -50,7 +50,7 @@ export default function Header() {
         <div
           className={
             nav
-              ? "w-full bg-putih text-hitam absolute top-[90px] left-0 flex justify-center text-center"
+              ? "w-full bg-putih text-hitam absolute top-[90px] left-0 flex justify-center text-center z-20"
               : "absolute left-[-100%]"
           }
         >
@@ -63,6 +63,11 @@ export default function Header() {
             <li className="border-b-2 border-zinc-300 w-full">
               <a href="#how-it-works" className="hover:text-hijau">
                 Cara Kerja
+              </a>
+            </li>
+            <li className="border-b-2 border-zinc-300 w-full">
+              <a href="/find-doctor" className="hover:text-hijau">
+                Cari Dokter
               </a>
             </li>
             <button className="m-4 hover:bg-hitam">Sign In</button>
