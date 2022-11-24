@@ -3,7 +3,7 @@ import DocinLogo from "../assets/images/logo-docin.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-white py-4 sm:py-6 px-[50px] md:px-[100px] lg:px-[100px] xl:px-[200px]">
+    <footer className="bg-white py-20 md:pt-[75px] sm:py-6 px-[50px] md:px-[100px] lg:px-[100px] xl:px-[200px]">
       <div className="md:flex md:justify-between">
         <div className="mb-6 md:mb-0">
           <a href="/" className="flex items-center">
@@ -12,16 +12,16 @@ export default function Footer() {
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
           <div>
-            <h2 className="mb-6 font-semibold text-gray-900">About Us</h2>
+            <h2 className="mb-6 font-semibold text-gray-900">Tentang Kami</h2>
             <ul className="text-gray-600">
-              <li className="mb-4 py-1">
+              <li className="mb-4 p-0 py-1">
                 <a href="#" className="hover:underline">
-                  Our Team
+                  Tim Kami
                 </a>
               </li>
-              <li className="mb-4 py-1">
+              <li className="mb-4 p-0 py-1">
                 <a href="#" className="hover:underline">
-                  Contact
+                  Kontak
                 </a>
               </li>
             </ul>
@@ -29,14 +29,14 @@ export default function Footer() {
           <div>
             <h2 className="mb-6 font-semibold text-gray-900">Legal</h2>
             <ul className="text-gray-600">
-              <li className="mb-4 py-1">
+              <li className="mb-4 p-0 py-1">
                 <a href="#" className="hover:underline">
-                  Privacy Policy
+                  Kebijakan Privasi
                 </a>
               </li>
-              <li className="mb-4 py-1">
+              <li className="mb-4 p-0 py-1">
                 <a href="#" className="hover:underline">
-                  Terms &amp; Conditions
+                  Syarat &amp; Ketentuan
                 </a>
               </li>
             </ul>
@@ -46,9 +46,9 @@ export default function Footer() {
               Apakah Anda Seorang Dokter?
             </h2>
             <ul className="text-gray-600">
-              <li className="mb-4 py-1 font-medium">
+              <li className="mb-4 p-0 py-1 font-medium">
                 <a href="/signup-doctor">
-                  <button>Register</button>
+                  <button>Daftar</button>
                 </a>
               </li>
             </ul>

@@ -44,7 +44,7 @@ export default function HowToUse() {
             </p>
             <p className="text-base text-hitam font-poppins font-[500] mt-3 md:mt-0 w-[280px]">
               Cari dokter dengan spesialisasi sesuai dengan kebutuhan Anda
-              melalui fitur Search Doctor.
+              melalui fitur Cari Dokter.
             </p>
           </div>
           <div className="flex flex-col items-center mt-0">

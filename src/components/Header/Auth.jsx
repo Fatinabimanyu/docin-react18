@@ -264,7 +264,7 @@ export default function Auth() {
 
   return (
     <a href="/login-user">
-      <button className="ml-5">Sign In</button>
+      <button className="ml-5">Masuk</button>
     </a>
   );
 }
