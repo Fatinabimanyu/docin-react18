@@ -9,7 +9,7 @@ export default function NotFound() {
             <div>
                 <img src={NotFoundImg}></img>
             </div>
-            <a className='pt-5' href="/">Kembali ke Beranda</a>
+            <a className='pt-5 hover:text-hijau' href="/">Kembali ke Beranda</a>
         </div>
     </>
   )
