@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
           <div>
-            <h2 className="mb-6 font-semibold text-gray-900">Tentang Kami</h2>
+            <h4 className="mb-6 font-semibold text-gray-900">Tentang Kami</h4>
             <ul className="text-gray-600">
               <li className="mb-4 p-0 py-1">
                 <a href="#" className="hover:underline">
@@ -28,7 +28,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 font-semibold text-gray-900">Legal</h2>
+            <h4 className="mb-6 font-semibold text-gray-900">Legal</h4>
             <ul className="text-gray-600">
               <li className="mb-4 p-0 py-1">
                 <a href="#" className="hover:underline">

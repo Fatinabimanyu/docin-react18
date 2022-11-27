@@ -67,7 +67,7 @@ export default function FindDoctor() {
                 </div>
               );
             })}
-            ;
+            
           </div>
         </div>
       </div>
