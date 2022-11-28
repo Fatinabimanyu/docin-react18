@@ -1,7 +1,8 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { getDoctor } from "../services/doctor";
 import { toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
 
 export default function FindDoctor() {
   const [doctorList, setDoctorList] = useState([]);
@@ -13,7 +14,6 @@ export default function FindDoctor() {
       } else {
         setDoctorList(response.data);
       }
-      console.log(response.data);
     }
     fetchData();
   }, []);
@@ -47,8 +47,9 @@ export default function FindDoctor() {
                   <div>
                     <img
                       src="https://assets.coingecko.com/coins/images/279/large/ethereum.png"
-                      className=" w-[180px] h-[210px] border-2"
-                    ></img>
+                      className=" w-[250px] h-[250px] border-2"
+                      alt=""
+                    />
                   </div>
                   <div className="flex flex-col justify-between p-[18px] w-full">
                     <div>
@@ -59,15 +60,16 @@ export default function FindDoctor() {
                       <p className="text-[16px] font-medium">
                         Rp{item.appointmentFee}
                       </p>
-                      <button className="px-[16px] py-[3px] rounded-md text-[16px]">
-                        Buat Janji
-                      </button>
+                      <NavLink to={"/doctor/" + item._id}>
+                        <button className="px-[16px] py-[3px] rounded-md text-[16px]">
+                          Buat Janji
+                        </button>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
               );
             })}
-            
           </div>
         </div>
       </div>

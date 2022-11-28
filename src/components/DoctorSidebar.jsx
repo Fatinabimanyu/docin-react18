@@ -5,10 +5,10 @@ import { HiOutlineHome, HiOutlineClipboardCheck } from "react-icons/hi";
 
 export default function Sidebar() {
   const menu = [
-    { name: "Home", href: "/user-dashboard", icon: <HiOutlineHome /> },
+    { name: "Beranda", href: "/", icon: <HiOutlineHome /> },
     {
       name: "Appointments",
-      href: "/appointments",
+      href: "/doctor-dashboard",
       icon: <HiOutlineClipboardCheck />,
     },
   ];

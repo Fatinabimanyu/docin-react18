@@ -36,7 +36,7 @@ export default function Auth() {
     return (
       <>
         <li className="border-b-2">
-          <a href="find-doctor" className="hover:text-hijau">
+          <a href="/find-doctor" className="hover:text-hijau">
             Cari Dokter
           </a>
         </li>

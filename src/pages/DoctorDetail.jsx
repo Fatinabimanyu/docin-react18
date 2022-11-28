@@ -1,12 +1,14 @@
-import React from 'react'
-import DetailDokter from '../components/DetailDokter'
-import Footer from '../components/Footer'
+import React from "react";
+import DoctorDetails from "../components/DoctorDetails";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 export default function DoctorDetail() {
   return (
     <>
-        <DetailDokter />
-        <Footer />
+      <Header />
+      <DoctorDetails />
+      <Footer />
     </>
-  )
+  );
 }

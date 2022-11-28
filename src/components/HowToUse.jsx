@@ -28,7 +28,11 @@ export default function HowToUse() {
           className="grid grid-cols-1 md:grid-cols-2 xl:flex text-center gap-y-12 justify-center md:gap-x-20 md:mt-10"
         >
           <div className="flex flex-col items-center">
-            <img src={Icon1} className="w-[25%] md:w-[35%] xl:w-[125px]"></img>
+            <img
+              src={Icon1}
+              className="w-[25%] md:w-[35%] xl:w-[125px]"
+              alt=""
+            ></img>
             <p className="text-lg text-hijau font-poppins font-bold mt-5">
               1. Masuk ke Akun Anda
             </p>
@@ -38,7 +42,11 @@ export default function HowToUse() {
             </p>
           </div>
           <div className="flex flex-col items-center mt-0">
-            <img src={Icon2} className="w-[25%] md:w-[35%] xl:w-[125px]"></img>
+            <img
+              src={Icon2}
+              className="w-[25%] md:w-[35%] xl:w-[125px]"
+              alt=""
+            ></img>
             <p className="text-lg text-hijau font-poppins font-bold mt-5">
               2. Cari Dokter yang Sesuai
             </p>
@@ -48,7 +56,11 @@ export default function HowToUse() {
             </p>
           </div>
           <div className="flex flex-col items-center mt-0">
-            <img src={Icon3} className="w-[25%] md:w-[35%] xl:w-[125px]"></img>
+            <img
+              src={Icon3}
+              className="w-[25%] md:w-[35%] xl:w-[125px]"
+              alt=""
+            ></img>
             <p className="text-lg text-hijau font-poppins font-bold mt-5">
               3. Rencanakan Janji Temu
             </p>
@@ -58,7 +70,11 @@ export default function HowToUse() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={Icon4} className="w-[25%] md:w-[35%] xl:w-[125px]"></img>
+            <img
+              src={Icon4}
+              className="w-[25%] md:w-[35%] xl:w-[125px]"
+              alt=""
+            ></img>
             <p className="text-lg text-hijau font-poppins font-bold mt-5">
               4. Isi Form Janji Temu
             </p>

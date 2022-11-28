@@ -1,12 +1,12 @@
 import React from "react";
-import DashContent from "../components/DashContent";
-import Sidebar from "../components/Sidebar";
+import UserAppointment from "../components/UserAppointment";
+import UserSidebar from "../components/UserSidebar";
 
 export default function UserDashboard() {
   return (
     <div className="w-full min-h-screen bg-white flex flex-row">
-      <Sidebar />
-      <DashContent />
+      <UserSidebar />
+      <UserAppointment />
     </div>
   );
 }

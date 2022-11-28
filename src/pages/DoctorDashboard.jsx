@@ -1,11 +1,11 @@
 import React from "react";
 import DoctorAppointment from "../components/DoctorAppoinment";
-import Sidebar from "../components/Sidebar";
+import DoctorSidebar from "../components/DoctorSidebar";
 
 export default function DoctorDashboard() {
   return (
     <div className="w-full min-h-screen bg-white flex flex-row">
-      <Sidebar />
+      <DoctorSidebar />
       <DoctorAppointment />
     </div>
   );
