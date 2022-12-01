@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
 import MyModal from "./Modal";
+import DeleteModal from "./DeleteModal";
 
 const appoinmentdata = [
   {
@@ -86,7 +87,7 @@ export default function DoctorAppoinment() {
 }
 
 function AppoinmentConfig({ items }) {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
   }
@@ -94,8 +95,18 @@ function AppoinmentConfig({ items }) {
   function openModal() {
     setIsOpen(true);
   }
+
+  let [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  function closeDeleteModal() {
+    setIsDeleteOpen(false);
+  }
+
+  function openDeleteModal() {
+    setIsDeleteOpen(true);
+  }
   return (
     <div>
+      <DeleteModal show={isDeleteOpen} closeModal={closeDeleteModal}/>
       <MyModal show={isOpen} closeModal={closeModal} />
       {/* {appoinmentdata.filter(id => id.contains("Accepted")).map(appoinment => { */}
       {items.map((appoinment) => {
@@ -112,7 +123,7 @@ function AppoinmentConfig({ items }) {
               >
                 <FaEye className="mr-[10px]" /> View
               </button>
-              <button className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md">
+              <button onClick={openDeleteModal} className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md">
                 <FaTrash className="mr-[10px]" />
                 Delete
               </button>
