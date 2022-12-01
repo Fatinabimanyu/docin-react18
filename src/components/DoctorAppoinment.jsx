@@ -42,34 +42,54 @@ const appoinmentdata = [
 ];
 
 export default function DoctorAppoinment() {
-  const [isActivebtn1, setIsActivebtn1] = useState(true);
+  const [isActivebtn1, setIsActivebtn1] = useState(false);
   const [isActivebtn2, setIsActivebtn2] = useState(false);
   const [isActivebtn3, setIsActivebtn3] = useState(false);
+  const [isActivebtnall, setIsActivebtnall] = useState(true);
+  const [filter, setFIlter] = useState("")
+
+  const handleClickbtnAll = () => {
+    setIsActivebtnall(!isActivebtnall);
+    setIsActivebtn1(false);
+    setIsActivebtn2(false);
+    setIsActivebtn3(false);
+    setFIlter("")
+  };
   const handleClickbtn1 = () => {
+    setIsActivebtnall(false)
     setIsActivebtn1(!isActivebtn1);
     setIsActivebtn2(false);
     setIsActivebtn3(false);
+    setFIlter("Pending")
   };
   const handleClickbtn2 = () => {
+    setIsActivebtnall(false)
     setIsActivebtn1(false);
     setIsActivebtn2(!isActivebtn2);
     setIsActivebtn3(false);
+    setFIlter("Accepted")
   };
   const handleClickbtn3 = () => {
+    setIsActivebtnall(false)
     setIsActivebtn1(false);
     setIsActivebtn2(false);
     setIsActivebtn3(!isActivebtn3);
+    setFIlter("Rejected")
   };
+  const statusFilter = (data,filter) =>{
+    return data.filter((item) => item.status.includes(filter))
+  }
 
   return (
     <>
       <section className="w-full bg-hijau-muda h-[100vh] flex justify-center ">
         <div className="px-[100px] w-full mt-[70px]">
-          {/* <div className="grid grid-cols-3">
-            <button className={` ${isActivebtn1 ? "bg-hitam":"bg-abu"} rounded-none bg-hitam hover:bg-hijaugelap`} onClick={handleClickbtn1}> Pending Request</button>
+          <div className="grid grid-cols-4">
+            <button className={` ${isActivebtnall ? "bg-hitam":"bg-abu"} rounded-none bg-hitam hover:bg-hijaugelap`} onClick={handleClickbtnAll}> All</button>
+            <button className={` ${isActivebtn1 ? "bg-hitam":"bg-abu"} rounded-none hover:bg-hijaugelap`} onClick={handleClickbtn1}> Pending Request</button>
             <button className={` ${isActivebtn2 ? "bg-hitam":"bg-abu"} rounded-none hover:bg-hijaugelap`} onClick={handleClickbtn2} >Accepted Request</button>
             <button className={` ${isActivebtn3 ? "bg-hitam":"bg-abu"} rounded-none hover:bg-hijaugelap`} onClick={handleClickbtn3} >Rejected Request</button>
-          </div> */}
+          </div>
           <div className="grid grid-cols-5 mt-[30px]">
             <p className="text-center bg-hitam text-white py-[10px]">Subject</p>
             <p className="text-center bg-hitam text-white py-[10px]">
@@ -79,7 +99,7 @@ export default function DoctorAppoinment() {
             <p className="text-center bg-hitam text-white py-[10px]">Status</p>
             <p className="text-center bg-hitam text-white py-[10px]">Action</p>
           </div>
-          <AppoinmentConfig items={appoinmentdata} />
+          <AppoinmentConfig items={statusFilter(appoinmentdata, filter)} />
         </div>
       </section>
     </>
