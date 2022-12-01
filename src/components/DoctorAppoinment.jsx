@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import MyModal from "./Modal";
 
 const appoinmentdata = [
   {
@@ -88,42 +85,28 @@ export default function DoctorAppoinment() {
 }
 
 function AppoinmentConfig({ items }) {
-  let [isOpen, setIsOpen] = useState(true);
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
   return (
-    <>
-      <div>
-        <MyModal show={isOpen} closeModal={closeModal} />
-        {/* {appoinmentdata.filter(id => id.contains("Accepted")).map(appoinment => { */}
-        {items.map((appoinment) => {
-          return (
-            <div key={appoinment.key} className="grid grid-cols-5 bg-white">
-              <p className="text-center py-[26px]">{appoinment.subject}</p>
-              <p className="text-center py-[26px]">{appoinment.applicant}</p>
-              <p className="text-center py-[26px]">{appoinment.date}</p>
-              <p className="text-center py-[26px]">{appoinment.status}</p>
-              <div className="flex justify-center items-center gap-x-5">
-                <button
-                  onClick={openModal}
-                  className="inline-flex bg-[#11F26B] items-center px-3 py-1 text-black rounded-md"
-                >
-                  <FaEye className="mr-[10px]" /> View
-                </button>
-                <button className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md">
-                  <FaTrash className="mr-[10px]" />
-                  Delete
-                </button>
-              </div>
+    <div>
+      {/* {appoinmentdata.filter(id => id.contains("Accepted")).map(appoinment => { */}
+      {items.map((appoinment) => {
+        return (
+          <div key={appoinment.key} className="grid grid-cols-5 bg-white">
+            <p className="text-center py-[26px]">{appoinment.subject}</p>
+            <p className="text-center py-[26px]">{appoinment.applicant}</p>
+            <p className="text-center py-[26px]">{appoinment.date}</p>
+            <p className="text-center py-[26px]">{appoinment.status}</p>
+            <div className="flex justify-center items-center gap-x-5">
+              <button className="inline-flex bg-[#11F26B] items-center px-3 py-1 text-black rounded-md">
+                <FaEye className="mr-[10px]" /> View
+              </button>
+              <button className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md">
+                <FaTrash className="mr-[10px]" />
+                Delete
+              </button>
             </div>
-          );
-        })}
-      </div>
-    </>
+          </div>
+        );
+      })}
+    </div>
   );
 }
