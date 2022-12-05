@@ -7,14 +7,15 @@ export default function DoctorDetails(props) {
   const params = useParams();
   const [doctors, setDoctors] = useState({});
 
-
   const [formData, setFormData] = useState({
     subject: "",
     explanation: "",
+    date: "",
     time: "",
-    receiver_id: `${params.id}`
+    receiver_id: `${params.id}`,
   });
-  const { subject, explanation, time, receiver_id, textChange } = formData;
+  const { subject, explanation, date, time, receiver_id, textChange } =
+    formData;
 
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
@@ -22,51 +23,56 @@ export default function DoctorDetails(props) {
   const handleSubmit = (e) => {
     const token = atob(Cookies.get("token"));
     e.preventDefault();
-    if (subject && explanation && time) {
-
+    if (subject && explanation && date && time) {
       const reqHeaders = {
-        'headers': {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Headers': 'x-access-token',
-          'x-access-token': token
-        }
-    }
-    console.log(token);
-    axios.defaults.headers.common["x-auth-token"] = token;
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Headers": "x-access-token",
+          "x-access-token": token,
+        },
+      };
+      console.log(token);
+      axios.defaults.headers.common["x-auth-token"] = token;
       setFormData({ ...formData, textChange: "Submitting" });
       axios
-        .post(`http://localhost:5000/appointments/create-request`, {
-          subject, explanation, time,receiver_id
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Headers': 'x-access-token',
-            'x-access-token': token
+        .post(
+          `http://localhost:5000/appointments/create-request`,
+          {
+            subject,
+            explanation,
+            date,
+            time,
+            receiver_id,
           },
-        }
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Headers": "x-access-token",
+              "x-access-token": token,
+            },
+          }
         )
         .then((res) => {
           setFormData({
             ...formData,
             subject: "",
             explanation: "",
-            time: ""
+            date: "",
+            time: "",
           });
 
-          console.log("success")
+          console.log("success");
         })
         .catch((err) => {
           setFormData({
             ...formData,
             subject: "",
             explanation: "",
-            time: ""
+            date: "",
+            time: "",
           });
           console.log(err.response);
-
         });
-
     } else {
       console.log("Isikan seluruh informasi yang dibutuhkan");
     }
@@ -80,7 +86,6 @@ export default function DoctorDetails(props) {
     }
     fetchData();
   }, [params.id]);
-
 
   return (
     <>
@@ -119,7 +124,10 @@ export default function DoctorDetails(props) {
               </p>
             </div>
           </form>
-          <form onSubmit={handleSubmit} className="bg-hitam p-5 lg:w-[450px] xl:w-[700px] h-[480px]">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-hitam p-5 lg:w-[450px] xl:w-[700px] h-[560px]"
+          >
             <h5 className="text-putih text-center mb-5">Buat Janji Temu</h5>
             <div className="mb-5">
               <label
@@ -160,19 +168,34 @@ export default function DoctorDetails(props) {
                 htmlFor="subjek"
                 className="block mb-2 text-md font-semibold text-white"
               >
+                Pilih Tanggal
+              </label>
+              <input
+                type="date"
+                value={date}
+                onChange={handleChange("date")}
+                id="date"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                required
+              ></input>
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="subjek"
+                className="block mb-2 text-md font-semibold text-white"
+              >
                 Pilih Waktu
               </label>
               <input
-                type="text"
+                type="time"
                 value={time}
                 onChange={handleChange("time")}
                 id="time"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                placeholder="Pilih tanggal dan waktu janji temu anda"
                 required
               ></input>
             </div>
-            <div className="flex justify-between mb-8">
+            <div className="flex justify-between mb-6">
               <label className="text-md font-semibold text-white">Harga</label>
               <label className="text-md font-semibold text-[#24E8DE]">
                 Rp
@@ -181,7 +204,10 @@ export default function DoctorDetails(props) {
                   : "Loading . . . . "}
               </label>
             </div>
-            <button type="submit" className="rounded-none w-full text-sm font-semibold">
+            <button
+              type="submit"
+              className="rounded-none w-full text-sm font-semibold text-[#EDF6F9] bg-[#0199A7] hover:shadow-lg"
+            >
               Buat Janji Temu
             </button>
           </form>
