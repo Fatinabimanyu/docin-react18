@@ -41,7 +41,7 @@ export default function Auth() {
           </a>
         </li>
         <div className="bg-hijau rounded-lg mx-5">
-          <Dropdown label="Menu" color="" className="">
+          <Dropdown label="Menu" color="" >
             {/* <Dropdown.Header>
               <span className="block text-sm">
                 `${payload.firstName} ${payload.lastName}`
@@ -50,12 +50,12 @@ export default function Auth() {
                 {payload.email}
               </span>
             </Dropdown.Header> */}
-            <Dropdown.Item>
+            <Dropdown.Item className="bg-putih hover:bg-hijau">
               <a href="/user-dashboard">Dashboard</a>
             </Dropdown.Item>
-            <Dropdown.Item>Edit Profile</Dropdown.Item>
+            <Dropdown.Item className="bg-putih hover:bg-hijau">Edit Profile</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={onLogout}>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={onLogout} className="bg-putih hover:bg-hijau">Sign out</Dropdown.Item>
           </Dropdown>
         </div>
       </>

@@ -1,10 +1,76 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
 export default function DoctorDetails(props) {
   const params = useParams();
   const [doctors, setDoctors] = useState({});
+
+
+  const [formData, setFormData] = useState({
+    subject: "",
+    explanation: "",
+    time: "",
+    receiver_id: `${params.id}`
+  });
+  const { subject, explanation, time, receiver_id, textChange } = formData;
+
+  const handleChange = (text) => (e) => {
+    setFormData({ ...formData, [text]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    const token = atob(Cookies.get("token"));
+    e.preventDefault();
+    if (subject && explanation && time) {
+
+      const reqHeaders = {
+        'headers': {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Headers': 'x-access-token',
+          'x-access-token': token
+        }
+    }
+    console.log(token);
+    axios.defaults.headers.common["x-auth-token"] = token;
+      setFormData({ ...formData, textChange: "Submitting" });
+      axios
+        .post(`http://localhost:5000/appointments/create-request`, {
+          subject, explanation, time,receiver_id
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': 'x-access-token',
+            'x-access-token': token
+          },
+        }
+        )
+        .then((res) => {
+          setFormData({
+            ...formData,
+            subject: "",
+            explanation: "",
+            time: ""
+          });
+
+          console.log("success")
+        })
+        .catch((err) => {
+          setFormData({
+            ...formData,
+            subject: "",
+            explanation: "",
+            time: ""
+          });
+          console.log(err.response);
+
+        });
+
+    } else {
+      console.log("Isikan seluruh informasi yang dibutuhkan");
+    }
+  };
   useEffect(() => {
     async function fetchData() {
       const response = await axios(
@@ -14,6 +80,8 @@ export default function DoctorDetails(props) {
     }
     fetchData();
   }, [params.id]);
+
+
   return (
     <>
       <div className="bg-hijau-muda h-full py-[100px] px-5 lg:px-[100px] xl:px-[150px]">
@@ -26,22 +94,22 @@ export default function DoctorDetails(props) {
           </h4>
         </div>
         <div className="flex flex-col lg:flex-row md:justify-between">
-          <form className="bg-putih mb-10 lg:w-[450px] xl:w-[700px]">
-            <div className="p-5 border-b-2 border-hitam">
+          <form className="bg-putih mb-10 lg:w-[450px] xl:w-[700px] h-[480px] border-2 border-hijau">
+            <div className="p-5 border-b-2 border-hitam h-[120px]">
               <h5 className="mb-1 text-hijau">Bio Dokter</h5>
               <p className="text-justify">
                 {doctors.bio ? doctors.bio : "Loading . . . . "}
               </p>
             </div>
-            <div className="p-5 border-b-2 border-hitam">
+            <div className="p-5 border-b-2 border-hitam h-[120px]">
               <h5 className="mb-1 text-hijau">Alamat</h5>
               <p>{doctors.address ? doctors.address : "Loading . . . . "}</p>
             </div>
-            <div className="p-5 border-b-2 border-hitam">
+            <div className="p-5 border-b-2 border-hitam h-[120px]">
               <h5 className="mb-1 text-hijau">Email</h5>
               <p>{doctors.email ? doctors.email : "Loading . . . . "}</p>
             </div>
-            <div className="p-5 border-b-2 border-hitam">
+            <div className="p-5 h-[120px]">
               <h5 className="mb-1 text-hijau">Harga</h5>
               <p>
                 Rp
@@ -51,9 +119,9 @@ export default function DoctorDetails(props) {
               </p>
             </div>
           </form>
-          <form className="bg-hitam p-5 lg:w-[450px] xl:w-[700px] h-full">
-            <h5 className="text-putih text-center mb-8">Buat Janji Temu</h5>
-            <div className="mb-6">
+          <form onSubmit={handleSubmit} className="bg-hitam p-5 lg:w-[450px] xl:w-[700px] h-[480px]">
+            <h5 className="text-putih text-center mb-5">Buat Janji Temu</h5>
+            <div className="mb-5">
               <label
                 htmlFor="subjek"
                 className="block mb-2 text-md font-semibold text-white"
@@ -61,7 +129,9 @@ export default function DoctorDetails(props) {
                 Subjek
               </label>
               <input
-                type="subjek"
+                type="text"
+                value={subject}
+                onChange={handleChange("subject")}
                 id="subjek"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Masukkan subjek atau tipe janji temu"
@@ -76,8 +146,10 @@ export default function DoctorDetails(props) {
                 Deskripsi
               </label>
               <input
-                type="subjek"
-                id="subjek"
+                type="text"
+                value={explanation}
+                onChange={handleChange("explanation")}
+                id="explanation"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Jelaskan detail keluhan kesehatan anda"
                 required
@@ -91,8 +163,10 @@ export default function DoctorDetails(props) {
                 Pilih Waktu
               </label>
               <input
-                type="subjek"
-                id="subjek"
+                type="text"
+                value={time}
+                onChange={handleChange("time")}
+                id="time"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Pilih tanggal dan waktu janji temu anda"
                 required
@@ -107,7 +181,7 @@ export default function DoctorDetails(props) {
                   : "Loading . . . . "}
               </label>
             </div>
-            <button className="rounded-none w-full text-sm font-semibold">
+            <button type="submit" className="rounded-none w-full text-sm font-semibold">
               Buat Janji Temu
             </button>
           </form>

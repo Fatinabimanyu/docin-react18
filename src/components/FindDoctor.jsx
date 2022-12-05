@@ -17,6 +17,11 @@ export default function FindDoctor() {
     }
     fetchData();
   }, []);
+  const [query,setQuery] = useState("")
+  const filterData = () =>{
+    return doctorList.filter((item) => item.name.toLowerCase().includes(query))
+  }
+  // console.log(query)
   return (
     <>
       <div className="bg-hijau-muda md:px-[200px] pb-[50px]">
@@ -25,29 +30,24 @@ export default function FindDoctor() {
         </h1>
         <div className="flex justify-between mx-[20px] md:mx-0 my-[20px]">
           <input
-            className="w-[80%] border-2 border-hijau rounded-lg px-[10px] md:w-[90%]"
+            className="w-[80%] border-2 border-hijau rounded-lg px-[10px] md:w-[100%]"
             type="text"
-            placeholder="Nama Dokter atau Spesialisasi"
+            placeholder="Cari Dokter"
+            onChange={(e) => setQuery(e.target.value)}
           ></input>
-          <button
-            className={`rounded-lg px-[20px] items-center gap-x-2 hidden md:inline-flex`}
-          >
-            <BiSearch />
-            <span>Cari</span>
-          </button>
           <button className="rounded-lg px-[20px] flex items-center gap-x-2 md:hidden">
             <BiSearch />
           </button>
         </div>
         <div className="mx-[20px] md:mx-0">
           <div>
-            {doctorList?.map((item) => {
+            {filterData().map((item) => {
               return (
-                <div key={item._id} className="flex border my-[10px] bg-putih">
-                  <div>
+                <div key={item._id} className="flex border my-[20px] bg-putih drop-shadow-md">
+                  <div className=" w-[250px] h-[250px]">
                     <img
-                      src="https://assets.coingecko.com/coins/images/279/large/ethereum.png"
-                      className=" w-[250px] h-[250px] border-2"
+                      src="https://asset-a.grid.id/crop/0x0:0x0/x/photo/2022/05/03/foto-cover-sinopsis-drama-korea-20220503065357.jpg"
+                      className="h-full object-cover border-2"
                       alt=""
                     />
                   </div>
