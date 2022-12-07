@@ -13,13 +13,12 @@ export default function DoctorAppoinment() {
   var decoded = jwt_decode(token);
 
   const client = axios.create({
-    baseURL: 'http://localhost:5000/appointments'
+    baseURL: "http://localhost:5000/appointments",
   });
 
   useEffect(() => {
     client.get().then((response) => {
       setAppointments(idFilter(response.data, decoded.id));
-      console.log(decoded.id)
     });
   }, []);
 
@@ -27,61 +26,96 @@ export default function DoctorAppoinment() {
   const [isActivebtn2, setIsActivebtn2] = useState(false);
   const [isActivebtn3, setIsActivebtn3] = useState(false);
   const [isActivebtnall, setIsActivebtnall] = useState(true);
-  const [filter, setFIlter] = useState("")
+  const [filter, setFilter] = useState("");
 
   const handleClickbtnAll = () => {
     setIsActivebtnall(!isActivebtnall);
     setIsActivebtn1(false);
     setIsActivebtn2(false);
     setIsActivebtn3(false);
-    setFIlter("")
+    setFilter("");
   };
   const handleClickbtn1 = () => {
-    setIsActivebtnall(false)
+    setIsActivebtnall(false);
     setIsActivebtn1(!isActivebtn1);
     setIsActivebtn2(false);
     setIsActivebtn3(false);
-    setFIlter("pending")
+    setFilter("pending");
   };
   const handleClickbtn2 = () => {
-    setIsActivebtnall(false)
+    setIsActivebtnall(false);
     setIsActivebtn1(false);
     setIsActivebtn2(!isActivebtn2);
     setIsActivebtn3(false);
-    setFIlter("accepted")
+    setFilter("accepted");
   };
   const handleClickbtn3 = () => {
-    setIsActivebtnall(false)
+    setIsActivebtnall(false);
     setIsActivebtn1(false);
     setIsActivebtn2(false);
     setIsActivebtn3(!isActivebtn3);
-    setFIlter("rejected")
+    setFilter("rejected");
   };
 
-  const statusFilter = (appointments ,filter) => {
-    return appointments.filter((appointment) => appointment.status.includes(filter))
-  }
+  const statusFilter = (appointments, filter) => {
+    return appointments.filter((appointment) =>
+      appointment.status.includes(filter)
+    );
+  };
 
   const idFilter = (appointments, filter) => {
-    return appointments.filter((appointment) => appointment.receiver_id.includes(filter))
-  }
+    return appointments.filter((appointment) =>
+      appointment.receiver_id.includes(filter)
+    );
+  };
 
   return (
     <>
       <section className="w-full bg-hijau-muda h-[100vh] flex justify-center ">
         <div className="px-[100px] w-full mt-[70px]">
           <div className="grid grid-cols-4">
-            <button className={` ${isActivebtnall ? "bg-hitam":"bg-abu"} rounded-none bg-hitam hover:bg-hijaugelap`} onClick={handleClickbtnAll}> All</button>
-            <button className={` ${isActivebtn1 ? "bg-hitam":"bg-abu"} rounded-none hover:bg-hijaugelap`} onClick={handleClickbtn1}> Pending Request</button>
-            <button className={` ${isActivebtn2 ? "bg-hitam":"bg-abu"} rounded-none hover:bg-hijaugelap`} onClick={handleClickbtn2} >Accepted Request</button>
-            <button className={` ${isActivebtn3 ? "bg-hitam":"bg-abu"} rounded-none hover:bg-hijaugelap`} onClick={handleClickbtn3} >Rejected Request</button>
+            <button
+              className={` ${
+                isActivebtnall ? "bg-hitam" : "bg-abu"
+              } rounded-none bg-hitam hover:bg-hijaugelap`}
+              onClick={handleClickbtnAll}
+            >
+              {" "}
+              All
+            </button>
+            <button
+              className={` ${
+                isActivebtn1 ? "bg-hitam" : "bg-abu"
+              } rounded-none hover:bg-hijaugelap`}
+              onClick={handleClickbtn1}
+            >
+              {" "}
+              Pending Request
+            </button>
+            <button
+              className={` ${
+                isActivebtn2 ? "bg-hitam" : "bg-abu"
+              } rounded-none hover:bg-hijaugelap`}
+              onClick={handleClickbtn2}
+            >
+              Accepted Request
+            </button>
+            <button
+              className={` ${
+                isActivebtn3 ? "bg-hitam" : "bg-abu"
+              } rounded-none hover:bg-hijaugelap`}
+              onClick={handleClickbtn3}
+            >
+              Rejected Request
+            </button>
           </div>
-          <div className="grid grid-cols-5 mt-[30px]">
+          <div className="grid grid-cols-6 mt-[30px]">
             <p className="text-center bg-hitam text-white py-[10px]">Subject</p>
             <p className="text-center bg-hitam text-white py-[10px]">
               Applicants
             </p>
             <p className="text-center bg-hitam text-white py-[10px]">Date</p>
+            <p className="text-center bg-hitam text-white py-[10px]">Time</p>
             <p className="text-center bg-hitam text-white py-[10px]">Status</p>
             <p className="text-center bg-hitam text-white py-[10px]">Action</p>
           </div>
@@ -93,7 +127,7 @@ export default function DoctorAppoinment() {
 }
 
 function AppoinmentConfig({ appointments }) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
   }
@@ -102,7 +136,7 @@ function AppoinmentConfig({ appointments }) {
     setIsOpen(true);
   }
 
-  let [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   function closeDeleteModal() {
     setIsDeleteOpen(false);
   }
@@ -112,25 +146,32 @@ function AppoinmentConfig({ appointments }) {
   }
   return (
     <div>
-      <DeleteModal show={isDeleteOpen} closeModal={closeDeleteModal}/>
+      <DeleteModal show={isDeleteOpen} closeModal={closeDeleteModal} />
       <MyModal show={isOpen} closeModal={closeModal} />
       {/* {appoinmentdata.filter(id => id.contains("Accepted")).map(appoinment => { */}
       {appointments.map((appointment) => {
         return (
-          <div key={appointment.key} className="grid grid-cols-5 bg-white">
+          <div key={appointment.key} className="grid grid-cols-6 bg-white">
             <p className="text-center py-[26px]">{appointment.subject}</p>
-            <p className="text-center py-[26px]">{appointment.creator_name.firstName}</p>
+            <p className="text-center py-[26px]">
+              {appointment.creator_name.firstName}&nbsp;
+              {appointment.creator_name.lastName}
+            </p>
+            <p className="text-center py-[26px]">{appointment.date}</p>
             <p className="text-center py-[26px]">{appointment.time}</p>
             <p className="text-center py-[26px]">{appointment.status}</p>
-            <div className="flex justify-center items-center gap-x-5">
+            <div className="flex justify-center items-center gap-x-3">
               <button
                 onClick={openModal}
                 className="inline-flex bg-[#11F26B] items-center px-3 py-1 text-black rounded-md"
               >
-                <FaEye className="mr-[10px]" /> View
+                <FaEye className="mr-[7px]" /> View
               </button>
-              <button onClick={openDeleteModal} className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md">
-                <FaTrash className="mr-[10px]" />
+              <button
+                onClick={openDeleteModal}
+                className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md"
+              >
+                <FaTrash className="mr-[7px]" />
                 Delete
               </button>
             </div>
