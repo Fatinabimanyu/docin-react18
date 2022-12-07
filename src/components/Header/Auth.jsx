@@ -31,6 +31,7 @@ export default function Auth() {
     setIsLoginDoctor(false);
     setIsLoginUser(false);
     navigate("/");
+    window.location.reload();
   };
   if (isLoginUser) {
     return (

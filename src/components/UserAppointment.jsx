@@ -112,8 +112,8 @@ export default function UserAppoinment() {
           <div className="grid grid-cols-6 mt-[30px]">
             <p className="text-center bg-hitam text-white py-[10px]">Subject</p>
             <p className="text-center bg-hitam text-white py-[10px]">Doctor</p>
-            <p className="text-center bg-hitam text-white py-[10px]">Time</p>
             <p className="text-center bg-hitam text-white py-[10px]">Date</p>
+            <p className="text-center bg-hitam text-white py-[10px]">Time</p>
             <p className="text-center bg-hitam text-white py-[10px]">Status</p>
             <p className="text-center bg-hitam text-white py-[10px]">Action</p>
           </div>
