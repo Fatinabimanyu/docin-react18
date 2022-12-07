@@ -70,12 +70,12 @@ export default function Auth() {
               {payload.email}
             </span>
           </Dropdown.Header> */}
-          <Dropdown.Item>
+          <Dropdown.Item className="bg-putih hover:bg-hijau">
             <a href="/doctor-dashboard">Dashboard</a>
           </Dropdown.Item>
-          <Dropdown.Item>Edit Profile</Dropdown.Item>
+          <Dropdown.Item className="bg-putih hover:bg-hijau">Edit Profile</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item onClick={onLogout}>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={onLogout} className="bg-putih hover:bg-hijau">Sign out</Dropdown.Item>
         </Dropdown>
       </div>
     );

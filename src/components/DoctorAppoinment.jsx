@@ -1,47 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
+import axios from "axios";
+import Cookies from "js-cookie";
 import MyModal from "./Modal";
 import DeleteModal from "./DeleteModal";
-
-const appoinmentdata = [
-  {
-    id: 1,
-    subject: "Cek Kolesterol",
-    applicant: "Bambang",
-    date: "20 / 11 / 2022",
-    status: "Accepted",
-  },
-  {
-    id: 2,
-    subject: "Cek Kolesterol",
-    applicant: "Joko",
-    date: "20 / 11 / 2022",
-    status: "Accepted",
-  },
-  {
-    id: 3,
-    subject: "Cek Kolesterol",
-    applicant: "Yanto",
-    date: "20 / 11 / 2022",
-    status: "Rejected",
-  },
-  {
-    id: 4,
-    subject: "Cek Kolesterol",
-    applicant: "Budi",
-    date: "20 / 11 / 2022",
-    status: "Accepted",
-  },
-  {
-    id: 5,
-    subject: "Cek Kolesterol",
-    applicant: "Wawan",
-    date: "20 / 11 / 2022",
-    status: "Pending",
-  },
-];
+import jwt_decode from "jwt-decode";
 
 export default function DoctorAppoinment() {
+  const [appointments, setAppointments] = useState([]);
+
+  const token = atob(Cookies.get("token"));
+  var decoded = jwt_decode(token);
+
+  const client = axios.create({
+    baseURL: 'http://localhost:5000/appointments'
+  });
+
+  useEffect(() => {
+    client.get().then((response) => {
+      setAppointments(idFilter(response.data, decoded.id));
+      console.log(decoded.id)
+    });
+  }, []);
+
   const [isActivebtn1, setIsActivebtn1] = useState(false);
   const [isActivebtn2, setIsActivebtn2] = useState(false);
   const [isActivebtn3, setIsActivebtn3] = useState(false);
@@ -60,24 +41,29 @@ export default function DoctorAppoinment() {
     setIsActivebtn1(!isActivebtn1);
     setIsActivebtn2(false);
     setIsActivebtn3(false);
-    setFIlter("Pending")
+    setFIlter("pending")
   };
   const handleClickbtn2 = () => {
     setIsActivebtnall(false)
     setIsActivebtn1(false);
     setIsActivebtn2(!isActivebtn2);
     setIsActivebtn3(false);
-    setFIlter("Accepted")
+    setFIlter("accepted")
   };
   const handleClickbtn3 = () => {
     setIsActivebtnall(false)
     setIsActivebtn1(false);
     setIsActivebtn2(false);
     setIsActivebtn3(!isActivebtn3);
-    setFIlter("Rejected")
+    setFIlter("rejected")
   };
-  const statusFilter = (data,filter) =>{
-    return data.filter((item) => item.status.includes(filter))
+
+  const statusFilter = (appointments ,filter) => {
+    return appointments.filter((appointment) => appointment.status.includes(filter))
+  }
+
+  const idFilter = (appointments, filter) => {
+    return appointments.filter((appointment) => appointment.receiver_id.includes(filter))
   }
 
   return (
@@ -99,14 +85,14 @@ export default function DoctorAppoinment() {
             <p className="text-center bg-hitam text-white py-[10px]">Status</p>
             <p className="text-center bg-hitam text-white py-[10px]">Action</p>
           </div>
-          <AppoinmentConfig items={statusFilter(appoinmentdata, filter)} />
+          <AppoinmentConfig appointments={statusFilter(appointments, filter)} />
         </div>
       </section>
     </>
   );
 }
 
-function AppoinmentConfig({ items }) {
+function AppoinmentConfig({ appointments }) {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
@@ -129,13 +115,13 @@ function AppoinmentConfig({ items }) {
       <DeleteModal show={isDeleteOpen} closeModal={closeDeleteModal}/>
       <MyModal show={isOpen} closeModal={closeModal} />
       {/* {appoinmentdata.filter(id => id.contains("Accepted")).map(appoinment => { */}
-      {items.map((appoinment) => {
+      {appointments.map((appointment) => {
         return (
-          <div key={appoinment.key} className="grid grid-cols-5 bg-white">
-            <p className="text-center py-[26px]">{appoinment.subject}</p>
-            <p className="text-center py-[26px]">{appoinment.applicant}</p>
-            <p className="text-center py-[26px]">{appoinment.date}</p>
-            <p className="text-center py-[26px]">{appoinment.status}</p>
+          <div key={appointment.key} className="grid grid-cols-5 bg-white">
+            <p className="text-center py-[26px]">{appointment.subject}</p>
+            <p className="text-center py-[26px]">{appointment.creator_name.firstName}</p>
+            <p className="text-center py-[26px]">{appointment.time}</p>
+            <p className="text-center py-[26px]">{appointment.status}</p>
             <div className="flex justify-center items-center gap-x-5">
               <button
                 onClick={openModal}

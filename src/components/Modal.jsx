@@ -74,14 +74,14 @@ export default function MyModal(props) {
                   <div className="flex justify-between mt-10">
                     <button
                       type="button"
-                      className=" bg-red-800 rounded-none hover:bg-red-800"
+                      className="w-[300px] bg-red-800 rounded-none hover:bg-red-500"
                       onClick={props.closeModal}
                     >
                       Reject
                     </button>
                     <button
                       type="button"
-                      className="bg-hijau rounded-none hover:bg-none"
+                      className="w-[300px] bg-hijau rounded-none hover:bg-none"
                       onClick={props.closeModal}
                     >
                       Accept

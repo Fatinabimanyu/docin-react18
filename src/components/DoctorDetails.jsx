@@ -126,7 +126,7 @@ export default function DoctorDetails(props) {
           </form>
           <form
             onSubmit={handleSubmit}
-            className="bg-hitam p-5 lg:w-[450px] xl:w-[700px] h-[560px]"
+            className="bg-hitam p-5 lg:w-[450px] xl:w-[700px] h-[480px]"
           >
             <h5 className="text-putih text-center mb-5">Buat Janji Temu</h5>
             <div className="mb-5">
@@ -148,7 +148,7 @@ export default function DoctorDetails(props) {
             </div>
             <div className="mb-6">
               <label
-                htmlFor="subjek"
+                htmlFor="deskripsi"
                 className="block mb-2 text-md font-semibold text-white"
               >
                 Deskripsi
@@ -163,37 +163,39 @@ export default function DoctorDetails(props) {
                 required
               ></input>
             </div>
-            <div className="mb-6">
-              <label
-                htmlFor="subjek"
-                className="block mb-2 text-md font-semibold text-white"
-              >
-                Pilih Tanggal
-              </label>
-              <input
-                type="date"
-                value={date}
-                onChange={handleChange("date")}
-                id="date"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                required
-              ></input>
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="subjek"
-                className="block mb-2 text-md font-semibold text-white"
-              >
-                Pilih Waktu
-              </label>
-              <input
-                type="time"
-                value={time}
-                onChange={handleChange("time")}
-                id="time"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                required
-              ></input>
+            <div className="flex flex-row justify-between">
+              <div className="mb-6">
+                <label
+                  htmlFor="date"
+                  className="block mb-2 text-md font-semibold text-white"
+                >
+                  Pilih Tanggal
+                </label>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={handleChange("date")}
+                  id="date"
+                  className="md:w-[350px] xl:w-[300px] shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                  required
+                ></input>
+              </div>
+              <div className="mb-6">
+                <label
+                  htmlFor="time"
+                  className="block mb-2 text-md font-semibold text-white"
+                >
+                  Pilih Waktu
+                </label>
+                <input
+                  type="time"
+                  value={time}
+                  onChange={handleChange("time")}
+                  id="time"
+                  className="md:w-[350px] xl:w-[300px] shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                  required
+                ></input>
+              </div>
             </div>
             <div className="flex justify-between mb-6">
               <label className="text-md font-semibold text-white">Harga</label>
