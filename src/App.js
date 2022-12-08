@@ -9,6 +9,7 @@ import LogInDoctor from "./pages/DoctorLogIn";
 import FindDoctor from "./pages/FindDoctor";
 import PageNotFound from "./pages/PageNotFound";
 import DoctorDetail from "./pages/DoctorDetail";
+import UserEditProfile from "./pages/UserEditProfile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/find-doctor" element={<FindDoctor />} />
         <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/user-edit-profile" element={<UserEditProfile />} />
         <Route path="/doctor/:id" element={<DoctorDetail />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>

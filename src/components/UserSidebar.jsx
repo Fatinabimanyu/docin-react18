@@ -20,7 +20,7 @@ export default function Sidebar() {
   const settings = [
     {
       name: "Edit Profile",
-      href: "/edit-profile",
+      href: "/user-edit-profile",
       icon: <BiEdit />,
     },
     { name: "Logout", href: "/", icon: <BiLogOut /> },
