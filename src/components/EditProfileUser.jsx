@@ -10,7 +10,7 @@ export default function EditProfileUser() {
   const decoded = jwt_decode(token);
 
   const getData = () => {
-    axios.get(`http://localhost:5000/users/current-user`, {headers: {"x-auth-token": token}})
+    axios.get(`https://paw-kelompok18.vercel.app/users/current-user`, {headers: {"x-auth-token": token}})
     .then((res) => {
       // setLoading(false);
       const { firstName, lastName, email, username, address } = res.data;
@@ -41,7 +41,7 @@ export default function EditProfileUser() {
     e.preventDefault();
     if (query.firstName && query.lastName && query.email && query.username && query.address) {
       axios.put(
-          `http://localhost:5000/users/${decoded.id}`,
+          `https://paw-kelompok18.vercel.app/users/${decoded.id}`,
           {
             firstName: query.firstName,
             lastName: query.lastName,

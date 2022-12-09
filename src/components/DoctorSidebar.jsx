@@ -1,7 +1,9 @@
 import React from "react";
-import DocinLogo from "../assets/images/logo-docin.svg";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import { BiEdit, BiLogOut } from "react-icons/bi";
 import { HiOutlineHome, HiOutlineClipboardCheck } from "react-icons/hi";
+import DocinLogo from "../assets/images/logo-docin.svg";
 
 export default function Sidebar() {
   const menu = [
@@ -18,8 +20,15 @@ export default function Sidebar() {
       href: "/edit-profile",
       icon: <BiEdit />,
     },
-    { name: "Logout", href: "/", icon: <BiLogOut /> },
+    { name: "Logout", href: "/", icon: <BiLogOut/> },
   ];
+  const token = atob(Cookies.get("token"));
+  const navigate = useNavigate();
+  const onLogout = () => {
+    Cookies.remove("token");
+    navigate("/");
+    window.location.reload();
+  };
   return (
     <div className="h-screen border-r border-gray-200 w-64 px-9 py-9 space-y-16">
       <div className="flex flex-col items-center space-y-3">
