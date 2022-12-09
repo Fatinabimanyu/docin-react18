@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import ListAppointment from './ListAppointmentUser'
+import ListAppointment from "./ListAppointmentUser";
 
 export default function UserAppoinment() {
   const [appointments, setAppointments] = useState([]);
@@ -11,7 +11,7 @@ export default function UserAppoinment() {
   var decoded = jwt_decode(token);
 
   const client = axios.create({
-    baseURL: "https://paw-kelompok18.vercel.app/appointments",
+    baseURL: "http://localhost:5000/appointments",
   });
 
   function getData() {
@@ -22,7 +22,6 @@ export default function UserAppoinment() {
 
   useEffect(() => {
     getData();
-
   }, []);
 
   const [isActivebtn1, setIsActivebtn1] = useState(false);
@@ -120,14 +119,17 @@ export default function UserAppoinment() {
             <p className="text-center bg-hitam text-white py-[10px]">Status</p>
             <p className="text-center bg-hitam text-white py-[10px]">Action</p>
           </div>
-          <AppointmentConfig appointments={statusFilter(appointments, filter)} _token={token}/>
+          <AppointmentConfig
+            appointments={statusFilter(appointments, filter)}
+            _token={token}
+          />
         </div>
       </section>
     </>
   );
 }
 
-function AppointmentConfig({ appointments, _token}) {
+function AppointmentConfig({ appointments, _token }) {
   console.log(appointments);
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
@@ -137,12 +139,16 @@ function AppointmentConfig({ appointments, _token}) {
   function openModal() {
     setIsOpen(true);
   }
-  
+
   return (
     <div>
       {appointments.map((appointment) => {
         return (
-         <ListAppointment openModal = {openModal} appointment={appointment} _token={_token}/>
+          <ListAppointment
+            openModal={openModal}
+            appointment={appointment}
+            _token={_token}
+          />
         );
       })}
     </div>

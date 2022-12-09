@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function DeleteModal(props) {
   const deleteData = async () => {
-    await axios.delete(`https://paw-kelompok18.vercel.app/appointments/${props.id}`, {
+    await axios.delete(`http://localhost:5000/appointments/${props.id}`, {
       headers: { "x-auth-token": props.token },
     });
     props.closeModal();

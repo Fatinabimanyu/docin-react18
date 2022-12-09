@@ -38,7 +38,7 @@ export default function DoctorDetails(props) {
       setFormData({ ...formData, textChange: "Submitting" });
       axios
         .post(
-          `https://paw-kelompok18.vercel.app/appointments/create-request`,
+          `http://localhost:5000/appointments/create-request`,
           {
             subject,
             explanation,
@@ -83,7 +83,7 @@ export default function DoctorDetails(props) {
   useEffect(() => {
     async function fetchData() {
       const response = await axios(
-        `https://paw-kelompok18.vercel.app/doctors/${params.id}`
+        `http://localhost:5000/doctors/${params.id}`
       );
       setDoctors(response.data);
     }

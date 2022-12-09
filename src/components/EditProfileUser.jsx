@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
@@ -10,12 +10,15 @@ export default function EditProfileUser() {
   const decoded = jwt_decode(token);
 
   const getData = () => {
-    axios.get(`https://paw-kelompok18.vercel.app/users/current-user`, {headers: {"x-auth-token": token}})
-    .then((res) => {
-      // setLoading(false);
-      const { firstName, lastName, email, username, address } = res.data;
-      setQuery({ ...query, firstName, lastName, email, username, address });
-    })
+    axios
+      .get(`http://localhost:5000/users/current-user`, {
+        headers: { "x-auth-token": token },
+      })
+      .then((res) => {
+        // setLoading(false);
+        const { firstName, lastName, email, username, address } = res.data;
+        setQuery({ ...query, firstName, lastName, email, username, address });
+      });
   };
 
   useEffect(() => {
@@ -23,11 +26,11 @@ export default function EditProfileUser() {
   }, []);
 
   const [query, setQuery] = useState({
-    firstName:"",
-    lastName:"",
-    email:"",
-    username:"",
-    address:""
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    address: "",
   });
 
   const handleChange = (text) => (e) => {
@@ -36,26 +39,33 @@ export default function EditProfileUser() {
 
   const handleSubmit = (e) => {
     const id = decoded.id;
-    console.log(id)
-    console.log(query)
+    console.log(id);
+    console.log(query);
     e.preventDefault();
-    if (query.firstName && query.lastName && query.email && query.username && query.address) {
-      axios.put(
-          `https://paw-kelompok18.vercel.app/users/${decoded.id}`,
+    if (
+      query.firstName &&
+      query.lastName &&
+      query.email &&
+      query.username &&
+      query.address
+    ) {
+      axios
+        .put(
+          `http://localhost:5000/users/${decoded.id}`,
           {
             firstName: query.firstName,
             lastName: query.lastName,
             email: query.email,
             username: query.username,
-            address: query.address
+            address: query.address,
           },
           {
             headers: {
-              "x-auth-token": token
+              "x-auth-token": token,
             },
           }
         )
-        .then(response => setQuery(response.data));
+        .then((response) => setQuery(response.data));
       toast.success("Profil anda berhasil diubah!");
     } else {
       console.log("Isikan seluruh informasi yang dibutuhkan");
@@ -102,7 +112,9 @@ export default function EditProfileUser() {
             value={query.email}
             onChange={handleChange("email")}
           ></input>
-          <p className="font-poppins font-bold text-base text-putih">Username</p>
+          <p className="font-poppins font-bold text-base text-putih">
+            Username
+          </p>
           <input
             placeholder="Enter your username"
             className="w-full h-[40px] text-base px-5 my-3 bg-[#878FB533] text-putih"
@@ -117,7 +129,12 @@ export default function EditProfileUser() {
             onChange={handleChange("address")}
           ></input>
         </form>
-        <button className="w-full rounded-none mt-[30px]" onClick={handleSubmit}>Save</button>
+        <button
+          className="w-full rounded-none mt-[30px]"
+          onClick={handleSubmit}
+        >
+          Save
+        </button>
       </div>
     </div>
   );

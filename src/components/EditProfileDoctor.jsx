@@ -11,7 +11,7 @@ export default function EditProfileDoctor() {
 
   const getData = () => {
     axios
-      .get(`https://paw-kelompok18.vercel.app/doctors/${decoded.id}`, {
+      .get(`http://localhost:5000/doctors/${decoded.id}`, {
         headers: { "x-auth-token": token },
       })
       .then((res) => {
@@ -62,7 +62,7 @@ export default function EditProfileDoctor() {
     ) {
       axios
         .put(
-          `https://paw-kelompok18.vercel.app/doctors/${decoded.id}`,
+          `http://localhost:5000/doctors/${decoded.id}`,
           {
             name: query.name,
             speciality: query.speciality,
@@ -122,9 +122,7 @@ export default function EditProfileDoctor() {
             value={query.email}
             onChange={handleChange("email")}
           ></input>
-          <p className="font-poppins font-bold text-base text-putih">
-            Bio
-          </p>
+          <p className="font-poppins font-bold text-base text-putih">Bio</p>
           <input
             placeholder="Enter your bio"
             className="w-full h-[40px] text-base px-5 my-3 bg-[#878FB533] text-putih"
