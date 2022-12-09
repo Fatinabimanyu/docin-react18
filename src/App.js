@@ -16,6 +16,7 @@ import FindDoctor from "./pages/FindDoctor";
 import PageNotFound from "./pages/PageNotFound";
 import DoctorDetail from "./pages/DoctorDetail";
 import UserEditProfile from "./pages/UserEditProfile";
+import DoctorEditProfile from "./pages/DoctorEditProfile";
 
 const PrivateRoute = ({ auth: { isAuthenticated }, children }) => {
   return isAuthenticated ? children : <Navigate to="/login-doctor" />;
@@ -40,6 +41,7 @@ function App() {
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/doctor/:id" element={<DoctorDetail />} />
           <Route path="/user-edit-profile" element={<UserEditProfile />} />
+          <Route path="/edit-profile" element={<DoctorEditProfile />} />
           {/* <Route
             path="/doctor-dashboard"
             element={

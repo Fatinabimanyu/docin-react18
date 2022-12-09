@@ -9,13 +9,6 @@ export default function EditProfileUser() {
   const token = atob(Cookies.get("token"));
   const decoded = jwt_decode(token);
 
-  const [userData, setUserData] = useState({
-    firstName:"",
-    lastName:"",
-    email:"",
-    username:"",
-    address:""
-  })
   const getData = () => {
     axios.get(`http://localhost:5000/users/current-user`, {headers: {"x-auth-token": token}})
     .then((res) => {
