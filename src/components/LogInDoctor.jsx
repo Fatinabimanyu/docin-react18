@@ -2,8 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { setLoginDoctor } from "../services/auth";
 import Cookies from "js-cookie";
 
@@ -84,7 +83,6 @@ export default function LogInForm() {
           </p>
         </form>
       </div>
-      <ToastContainer />
     </>
   );
 }

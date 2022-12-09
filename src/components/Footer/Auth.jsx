@@ -15,9 +15,9 @@ export default function Auth() {
   return (
     <>
       <div>
-        <h4 className="mb-6 font-semibold text-gray-900">
+        <h5 className="mb-6 font-semibold text-gray-900">
           Apakah Anda Seorang Dokter?
-        </h4>
+        </h5>
         <ul className="text-gray-600">
           <li className="mb-4 p-0 py-1 font-medium">
             <a href="/signup-doctor">

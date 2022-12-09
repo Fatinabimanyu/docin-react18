@@ -3,16 +3,13 @@ import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { Dropdown } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Auth() {
   const [isLoginUser, setIsLoginUser] = useState(false);
   const [isLoginDoctor, setIsLoginDoctor] = useState(false);
-  const token = Cookies.get("token");
-  if (token) {
-    const jwtToken = atob(token);
-    const payload = jwtDecode(jwtToken);
-  }
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
@@ -26,13 +23,16 @@ export default function Auth() {
       }
     }
   }, []);
+
   const onLogout = () => {
     Cookies.remove("token");
     setIsLoginDoctor(false);
     setIsLoginUser(false);
+    toast.success("Logout berhasil!");
     navigate("/");
-    window.location.reload();
+    setTimeout(() => window.location.reload(), 2000);
   };
+
   if (isLoginUser) {
     return (
       <>
@@ -42,21 +42,20 @@ export default function Auth() {
           </a>
         </li>
         <div className="bg-hijau rounded-lg mx-5">
-          <Dropdown label="Menu" color="" >
-            {/* <Dropdown.Header>
-              <span className="block text-sm">
-                `${payload.firstName} ${payload.lastName}`
-              </span>
-              <span className="block text-sm font-medium truncate">
-                {payload.email}
-              </span>
-            </Dropdown.Header> */}
+          <Dropdown label="Menu" color="">
             <Dropdown.Item className="bg-putih hover:bg-hijau">
               <a href="/user-dashboard">Dashboard</a>
             </Dropdown.Item>
-            <Dropdown.Item className="bg-putih hover:bg-hijau">Edit Profile</Dropdown.Item>
+            <Dropdown.Item className="bg-putih hover:bg-hijau">
+              Edit Profile
+            </Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={onLogout} className="bg-putih hover:bg-hijau">Sign out</Dropdown.Item>
+            <Dropdown.Item
+              onClick={onLogout}
+              className="bg-putih hover:bg-hijau"
+            >
+              Sign out
+            </Dropdown.Item>
           </Dropdown>
         </div>
       </>
@@ -74,9 +73,13 @@ export default function Auth() {
           <Dropdown.Item className="bg-putih hover:bg-hijau">
             <a href="/doctor-dashboard">Dashboard</a>
           </Dropdown.Item>
-          <Dropdown.Item className="bg-putih hover:bg-hijau">Edit Profile</Dropdown.Item>
+          <Dropdown.Item className="bg-putih hover:bg-hijau">
+            Edit Profile
+          </Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item onClick={onLogout} className="bg-putih hover:bg-hijau">Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={onLogout} className="bg-putih hover:bg-hijau">
+            Sign out
+          </Dropdown.Item>
         </Dropdown>
       </div>
     );

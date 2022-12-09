@@ -10,7 +10,7 @@ export default async function callAPI({ url, method, data }) {
   if (response.status > 300) {
     const res = {
       error: true,
-      message: response.data.message,
+      message: response.data.errors,
       data: null,
     };
     return res;

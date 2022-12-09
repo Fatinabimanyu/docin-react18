@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import LandingPage from "./pages/LandingPage";
 import UserDashboard from "./pages/UserDashboard";
 import SignUpUser from "./pages/UserSignUp";
@@ -13,6 +14,7 @@ import UserEditProfile from "./pages/UserEditProfile";
 
 function App() {
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -28,6 +30,8 @@ function App() {
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </Router>
+    <ToastContainer />
+    </>
   );
 }
 

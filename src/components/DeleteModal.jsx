@@ -1,16 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment} from "react";
+import { toast } from "react-toastify";
+import { Fragment } from "react";
 import axios from "axios";
 
 export default function DeleteModal(props) {
-  console.log("ini adalah id " + props.id)
-  const ID = props.id
   const deleteData = async () => {
-    await axios.delete(`http://localhost:5000/appointments/${props.id}`, { headers: { 'x-auth-token': props.token } });
-    console.log(ID);
+    await axios.delete(`http://localhost:5000/appointments/${props.id}`, {
+      headers: { "x-auth-token": props.token },
+    });
     props.closeModal();
-    window.location.reload();
-  }
+    toast.success("Appointment berhasil dihapus!");
+    setTimeout(() => window.location.reload(), 2000);
+  };
 
   return (
     <>
@@ -40,7 +41,6 @@ export default function DeleteModal(props) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className=" transform overflow-hidden rounded-2xl bg-white p-7 w-[600px] text-left align-middle shadow-xl transition-all">
-
                   <div className="flex mt-2 justify-center">
                     <p>Apakah anda yakin menghapus data ini?</p>
                   </div>

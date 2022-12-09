@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { setSignUpDoctor } from "../services/auth";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
@@ -133,7 +132,6 @@ export default function SignUpForm() {
           </p>
         </form>
       </div>
-      <ToastContainer />
     </>
   );
 }
