@@ -1,15 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment} from "react";
+import axios from "axios";
 
 export default function DeleteModal(props) {
-  let [isOpen, setIsOpen] = useState(true);
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
+  console.log("ini adalah id " + props.id)
+  const ID = props.id
+  const deleteData = async () => {
+    await axios.delete(`http://localhost:5000/appointments/${props.id}`, { headers: { 'x-auth-token': props.token } });
+    console.log(ID);
+    props.closeModal();
+    window.location.reload();
   }
 
   return (
@@ -39,24 +39,26 @@ export default function DeleteModal(props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className=" transform overflow-hidden rounded-2xl bg-white p-7 w-[450px] text-left align-middle shadow-xl transition-all">
-                  {/* <Dialog.Title
-                    as="h3"
-                    className="text-3xl mb-9 font-blod leading-6 text-black text-center"
-                  >
-                    Detail Appoinment
-                  </Dialog.Title> */}
-                  <div className="mt-2">
-                    <p>Apakah Anda Yakin Menghapus Appoinment</p>
+                <Dialog.Panel className=" transform overflow-hidden rounded-2xl bg-white p-7 w-[600px] text-left align-middle shadow-xl transition-all">
+
+                  <div className="flex mt-2 justify-center">
+                    <p>Apakah anda yakin menghapus data ini?</p>
                   </div>
 
-                  <div className="inline-flex flex-col-reverse mt-10">
+                  <div className="flex flex-row justify-between mt-10 font-semibold">
                     <button
                       type="button"
-                      className=" bg-red-800 rounded-none hover:bg-red-800"
+                      className=" bg-red-700 hover:bg-red-500 w-[250px] rounded-md"
+                      onClick={deleteData}
+                    >
+                      Hapus
+                    </button>
+                    <button
+                      type="button"
+                      className=" bg-gray-500 hover:bg-gray-400 w-[250px] rounded-md"
                       onClick={props.closeModal}
                     >
-                      Delete
+                      Tidak
                     </button>
                   </div>
                 </Dialog.Panel>

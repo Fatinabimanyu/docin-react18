@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import Cookies from "js-cookie";
-import MyModal from "./Modal";
-import DeleteModal from "./DeleteModal";
 import jwt_decode from "jwt-decode";
+import MyModal from "./Modal";
+import ListAppointment from "./ListAppointmentDoctor";
 
 export default function DoctorAppoinment() {
   const [appointments, setAppointments] = useState([]);
@@ -119,15 +119,16 @@ export default function DoctorAppoinment() {
             <p className="text-center bg-hitam text-white py-[10px]">Status</p>
             <p className="text-center bg-hitam text-white py-[10px]">Action</p>
           </div>
-          <AppoinmentConfig appointments={statusFilter(appointments, filter)} />
+          <AppointmentConfig appointments={statusFilter(appointments, filter)} _token={token}/>
         </div>
       </section>
     </>
   );
 }
 
-function AppoinmentConfig({ appointments }) {
-  const [isOpen, setIsOpen] = useState(false);
+function AppointmentConfig({ appointments, _token}) {
+  console.log(appointments);
+  let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
   }
@@ -136,46 +137,22 @@ function AppoinmentConfig({ appointments }) {
     setIsOpen(true);
   }
 
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  let [isDeleteOpen, setIsDeleteOpen] = useState(false);
   function closeDeleteModal() {
-    setIsDeleteOpen(false);
+    setIsDeleteOpen(!isDeleteOpen);
   }
 
   function openDeleteModal() {
-    setIsDeleteOpen(true);
+    
+    setIsDeleteOpen(!isDeleteOpen);
+    console.log(isDeleteOpen)
   }
   return (
     <div>
-      <DeleteModal show={isDeleteOpen} closeModal={closeDeleteModal} />
-      <MyModal show={isOpen} closeModal={closeModal} />
-      {/* {appoinmentdata.filter(id => id.contains("Accepted")).map(appoinment => { */}
+      <MyModal  show={isOpen} closeModal={closeModal} />
       {appointments.map((appointment) => {
         return (
-          <div key={appointment.key} className="grid grid-cols-6 bg-white">
-            <p className="text-center py-[26px]">{appointment.subject}</p>
-            <p className="text-center py-[26px]">
-              {appointment.creator_name.firstName}&nbsp;
-              {appointment.creator_name.lastName}
-            </p>
-            <p className="text-center py-[26px]">{appointment.date}</p>
-            <p className="text-center py-[26px]">{appointment.time}</p>
-            <p className="text-center py-[26px]">{appointment.status}</p>
-            <div className="flex justify-center items-center gap-x-3">
-              <button
-                onClick={openModal}
-                className="inline-flex bg-[#11F26B] items-center px-3 py-1 text-black rounded-md"
-              >
-                <FaEye className="mr-[7px]" /> View
-              </button>
-              <button
-                onClick={openDeleteModal}
-                className="inline-flex bg-[#E74343] items-center px-3 py-1 text-white rounded-md"
-              >
-                <FaTrash className="mr-[7px]" />
-                Delete
-              </button>
-            </div>
-          </div>
+         <ListAppointment openModal = {openModal} appointment={appointment} _token={_token}/>
         );
       })}
     </div>
