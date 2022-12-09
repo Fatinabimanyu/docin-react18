@@ -2,7 +2,7 @@
   DocIn
 </h1>
 
-<p align="center">Rest API Doctor Appointment</p><br>
+<p align="center">DocIn Front-end</p><br>
 
 ### Member
 |   Name     |   NIM     |
