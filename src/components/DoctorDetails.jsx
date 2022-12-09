@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function DoctorDetails(props) {
@@ -93,6 +93,7 @@ export default function DoctorDetails(props) {
   return (
     <>
       <div className="bg-hijau-muda h-full py-[100px] px-5 lg:px-[100px] xl:px-[150px]">
+        <ToastContainer />
         <div className="text-hitam text-center mb-10 md:mb-[100px]">
           <h2 className="xl:text-4xl">
             {doctors.name ? doctors.name : "Loading . . . . "}

@@ -1,8 +1,20 @@
 import React, { useState} from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "./DeleteModal";
+import EditModal from "./Modal";
 
 export default function ListAppointmentUser({ appointment, _token, openModal }) {
+  let [isEditOpen, setIsEditOpen] = useState(false);
+  function closeEditModal() {
+    setIsEditOpen(!isEditOpen);
+  }
+
+  function openEditModal() {
+
+    setIsEditOpen(!isEditOpen);
+    console.log(isEditOpen)
+  }
+  
   let [isDeleteOpen, setIsDeleteOpen] = useState(false);
   function closeDeleteModal() {
     setIsDeleteOpen(!isDeleteOpen);
@@ -25,7 +37,7 @@ export default function ListAppointmentUser({ appointment, _token, openModal }) 
         <p className="text-center py-[26px]">{appointment.status}</p>
         <div className="flex justify-center items-center gap-x-3">
           <button
-            onClick={openModal}
+            onClick={openEditModal}
             className="inline-flex bg-[#11F26B] items-center px-3 py-1 text-black rounded-md"
           >
             <FaEdit className="mr-[7px]" /> Edit
@@ -38,6 +50,7 @@ export default function ListAppointmentUser({ appointment, _token, openModal }) 
             Hapus
           </button>
         </div>
+        {isEditOpen ? <> <EditModal show={true} closeModal={closeEditModal} item={appointment} id={appointment._id} token={_token} /></> : <></>}
         {isDeleteOpen ? <> <DeleteModal show={true} closeModal={closeDeleteModal} id={appointment._id} token={_token} /></> : <></>}
       </div>
     </>

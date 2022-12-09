@@ -136,20 +136,9 @@ function AppointmentConfig({ appointments, _token}) {
   function openModal() {
     setIsOpen(true);
   }
-
-  let [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  function closeDeleteModal() {
-    setIsDeleteOpen(!isDeleteOpen);
-  }
-
-  function openDeleteModal() {
-    
-    setIsDeleteOpen(!isDeleteOpen);
-    console.log(isDeleteOpen)
-  }
+  
   return (
     <div>
-      <MyModal  show={isOpen} closeModal={closeModal} />
       {appointments.map((appointment) => {
         return (
          <ListAppointment openModal = {openModal} appointment={appointment} _token={_token}/>
