@@ -36,7 +36,10 @@ function App() {
           <Route path="/signup-doctor" element={<SignUpDoctor />} />
           <Route path="/login-doctor" element={<LogInDoctor />} />
           <Route path="/find-doctor" element={<FindDoctor />} />
-          <Route
+          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/doctor/:id" element={<DoctorDetail />} />
+          {/* <Route
             path="/doctor-dashboard"
             element={
               <PrivateRouteD auth={{ isAuthenticated: false }}>
@@ -59,7 +62,7 @@ function App() {
                 <DoctorDetail />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </Router>

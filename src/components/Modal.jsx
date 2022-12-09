@@ -18,15 +18,24 @@ export default function MyModal(props) {
   const [isLoginDoctor, setIsLoginDoctor] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const token = atob(Cookies.get("token"));
+  
+  const handleChange = (text) => (e) => {
+    setQuery({ ...query, [text]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
-    const id = props.id;
+    const id = props.item._id;
+    console.log(props.id)
+    console.log(query)
     e.preventDefault();
-    if (props.item.subject && props.item.explanation && props.item.date && props.item.time) {
+    if (query.subject && query.explanation && query.date && query.time) {
       axios.put(
-          `http://localhost:5000/appointments/${id}`,
+          `http://localhost:5000/appointments/${props.id}`,
           {
-            subject: query.subject
+            subject: query.subject,
+            explanation: query.explanation,
+            date: query.date,
+            time: query.time
           },
           {
             headers: {
@@ -36,12 +45,11 @@ export default function MyModal(props) {
         )
         .then(response => setQuery(response.data));
       toast.success("Janji temu berhasil diedit!");
-      console.log(id)
-      console.log(token)
-      console.log(query)
     } else {
       console.log("Isikan seluruh informasi yang dibutuhkan");
     }
+    props.closeModal();
+    setTimeout(() => window.location.reload(), 2000);
   };
 
   const [query, setQuery] = useState({
@@ -104,7 +112,7 @@ export default function MyModal(props) {
                       <input className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
                         isLoginDoctor? "border-0 p-0" : ""}`} 
                         value={query.subject} disabled={isDisabled}
-                        onChange={(e) => setQuery(e.target.value)}>
+                        onChange={handleChange("subject")}>
                       </input>
                       <p className="text-xl text-hijaugelap font-bold">
                         Explanation
@@ -112,19 +120,19 @@ export default function MyModal(props) {
                       <input className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
                         isLoginDoctor? "border-0 p-0" : ""}`} 
                         value={query.explanation} disabled={isDisabled}
-                        onChange={(e) => setQuery(e.target.value)}>
+                        onChange={handleChange("explanation")}>
                       </input>
                       <p className="text-xl text-hijaugelap font-bold">Date</p>
                       <input className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
                         isLoginDoctor? "border-0 p-0" : ""}`} 
                         value={query.date} disabled={isDisabled} type="date"
-                        onChange={(e) => setQuery(e.target.value)}>
+                        onChange={handleChange("date")}>
                       </input>
                       <p className="text-xl text-hijaugelap font-bold">Time</p>
                       <input className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
                         isLoginDoctor? "border-0 p-0" : ""}`} 
                         value={query.time} disabled={isDisabled} type="time"
-                        onChange={(e) => setQuery(e.target.value)}>
+                        onChange={handleChange("time")}>
                       </input>
                       <p className="text-xl text-hijaugelap font-bold">Status</p>
                       <p className="mb-4">{props.item.status}</p>
