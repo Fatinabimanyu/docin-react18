@@ -66,9 +66,9 @@ export default function Header() {
 
         <div onClick={handleNav} className="block md:hidden">
           {nav ? (
-            <IoMdClose size={30} className="text-hitam" />
+            <IoMdClose size={30} className="text-hitam bg-white" />
           ) : (
-            <HiOutlineMenu size={30} className="text-hitam" />
+            <HiOutlineMenu size={30} className="text-hitam bg-whiteq" />
           )}
         </div>
       </div>

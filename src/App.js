@@ -39,6 +39,7 @@ function App() {
           <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/doctor/:id" element={<DoctorDetail />} />
+          <Route path="/user-edit-profile" element={<UserEditProfile />} />
           {/* <Route
             path="/doctor-dashboard"
             element={
