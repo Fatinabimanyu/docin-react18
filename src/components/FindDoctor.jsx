@@ -17,10 +17,10 @@ export default function FindDoctor() {
     }
     fetchData();
   }, []);
-  const [query,setQuery] = useState("")
-  const filterData = () =>{
-    return doctorList.filter((item) => item.name.toLowerCase().includes(query))
-  }
+  const [query, setQuery] = useState("");
+  const filterData = () => {
+    return doctorList.filter((item) => item.name.toLowerCase().includes(query));
+  };
   // console.log(query)
   return (
     <>
@@ -43,7 +43,10 @@ export default function FindDoctor() {
           <div>
             {filterData().map((item) => {
               return (
-                <div key={item._id} className="flex border my-[20px] bg-putih drop-shadow-md">
+                <div
+                  key={item._id}
+                  className="flex border my-[20px] bg-putih drop-shadow-md"
+                >
                   <div className=" w-[250px] h-[250px]">
                     <img
                       src="https://asset-a.grid.id/crop/0x0:0x0/x/photo/2022/05/03/foto-cover-sinopsis-drama-korea-20220503065357.jpg"

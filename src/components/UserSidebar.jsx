@@ -10,6 +10,7 @@ import {
 export default function Sidebar() {
   const menu = [
     { name: "Beranda", href: "/", icon: <HiOutlineHome /> },
+    { name: "Tambah Pasien", href: "/add-pasien", icon: <HiSearch /> },
     {
       name: "Appointments",
       href: "/user-dashboard",

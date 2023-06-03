@@ -10,6 +10,16 @@ export async function setSignUpUser(data) {
   });
 }
 
+export async function setAddPasien(data) {
+  const url = "http://localhost:5000/patients/add-patient";
+
+  return callAPI({
+    url,
+    method: "post",
+    data,
+  });
+}
+
 export async function setLoginUser(data) {
   const url = "http://localhost:5000/users/login";
 
