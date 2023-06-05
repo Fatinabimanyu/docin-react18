@@ -1,4 +1,4 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, Transition, Listbox } from "@headlessui/react";
 import { Fragment, useState, useEffect, setState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -6,6 +6,9 @@ import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 
 export default function MyModal(props) {
+  const [options, setOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [obat, setObat] = useState([]);
   let [isOpen, setIsOpen] = useState(true);
   function closeModal() {
     setIsOpen(false);
@@ -15,33 +18,9 @@ export default function MyModal(props) {
     setIsOpen(true);
   }
 
-  const acceptAppointment = (e) => {
-    e.preventDefault();
-    const reqHeaders = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Headers": "x-access-token",
-        "x-access-token": token,
-      },
-    };
-    axios.defaults.headers.common["x-auth-token"] = token;
-    axios.put(
-      `http://localhost:5000/appointments/accept/${props.id}`,
-      {
-        status: "accepted",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Headers": "x-access-token",
-          "x-access-token": token,
-        },
-      }
-    );
-    props.closeModal();
-    toast.success("Appointment berhasil diterima!");
-    setTimeout(() => window.location.reload(), 2000);
-  };
+  // const handleDropdownChange = (event) => {
+  //   setSelectedOptions(event.target.value);
+  // };
 
   const rejectAppointment = (e) => {
     e.preventDefault();
@@ -84,13 +63,14 @@ export default function MyModal(props) {
     console.log(props.id);
     console.log(query);
     e.preventDefault();
-    if (query.subject && query.explanation && query.date && query.time) {
+    if (query.patient_name && query.explanation && query.date && query.time) {
       axios
         .put(
           `http://localhost:5000/appointments/${props.id}`,
           {
-            subject: query.subject,
+            patient_name: query.patient_name,
             explanation: query.explanation,
+            explanation_doctor: query.explanation_doctor,
             date: query.date,
             time: query.time,
           },
@@ -110,11 +90,30 @@ export default function MyModal(props) {
   };
 
   const [query, setQuery] = useState({
-    subject: props.item.subject,
+    patient_name: props.item.patient_name,
     explanation: props.item.explanation,
+    explanation_doctor: props.item.explanation_doctor,
     date: props.item.date,
     time: props.item.time,
   });
+
+  const fetchData = async (selectedValue) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:9000/${selectedValue}`
+      );
+      // Lakukan sesuatu dengan data yang diperoleh dari GET request
+      const obat = response.data;
+      setObat(obat);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const handleDropdownChange = (event) => {
+  //   setSelectedOptions(event.target.value);
+  //   fetchData(event.target.value); // Panggil fungsi GET saat nilai dropdown berubah
+  // };
 
   useEffect(() => {
     if (token) {
@@ -127,8 +126,91 @@ export default function MyModal(props) {
       } else {
       }
     }
+    axios
+      .get("http://localhost:9000/")
+      .then((response) => {
+        setOptions(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios
+      .get(`http://localhost:9000/${selectedOptions._id}`)
+      .then((responseObat) => {
+        setObat(responseObat.data);
+        console.log(responseObat.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     console.log(query);
-  }, []);
+  }, [selectedOptions]);
+
+  const acceptAppointment = (e) => {
+    e.preventDefault();
+    const reqHeaders = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "x-access-token",
+        "x-access-token": token,
+      },
+    };
+    axios.defaults.headers.common["x-auth-token"] = token;
+    axios
+      .put(
+        `http://localhost:5000/appointments/accept/${props.id}`,
+        {
+          status: "accepted",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers": "x-access-token",
+            "x-access-token": token,
+          },
+        }
+      )
+      .then((response) => {
+        return axios.put(
+          `http://localhost:5000/appointments/${props.id}`,
+          {
+            patient_name: query.patient_name,
+            explanation: query.explanation,
+            explanation_doctor: query.explanation_doctor,
+            date: query.date,
+            time: query.time,
+          },
+          {
+            headers: {
+              "x-auth-token": token,
+            },
+          }
+        );
+      })
+      .then((response) => {
+        return axios.put(
+          `http://localhost:5000/appointments/${props.id}`,
+          {
+            patient_name: query.patient_name,
+            explanation: query.explanation,
+            explanation_doctor: query.explanation_doctor,
+            date: query.date,
+            time: query.time,
+          },
+          {
+            headers: {
+              "x-auth-token": token,
+            },
+          }
+        );
+      })
+      .then((response) => setQuery(response.data));
+    props.closeModal();
+    toast.success("Appointment berhasil diterima!");
+    setTimeout(() => window.location.reload(), 2000);
+  };
+
   return (
     <>
       <Transition appear show={props.show} as={Fragment}>
@@ -166,15 +248,15 @@ export default function MyModal(props) {
                   <div className="mt-2">
                     <form onSubmit={handleSubmit}>
                       <p className="text-xl text-hijaugelap font-bold">
-                        Subject
+                        Nama Pasien
                       </p>
                       <input
                         className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
                           isLoginDoctor ? "border-0 p-0" : ""
                         }`}
-                        value={query.subject}
+                        value={query.patient_name}
                         disabled={isDisabled}
-                        onChange={handleChange("subject")}
+                        onChange={handleChange("patient_name")}
                       ></input>
                       <p className="text-xl text-hijaugelap font-bold">
                         Explanation
@@ -186,6 +268,89 @@ export default function MyModal(props) {
                         value={query.explanation}
                         disabled={isDisabled}
                         onChange={handleChange("explanation")}
+                      ></input>
+                      <p
+                        className={`text-xl text-hijaugelap font-bold ${
+                          isLoginDoctor ? "" : "hidden"
+                        }`}
+                      >
+                        Obat yang Dibutuhkan
+                      </p>
+                      <Listbox
+                        value={selectedOptions}
+                        onChange={setSelectedOptions}
+                        className={`text-xl text-hijaugelap font-bold ${
+                          isLoginDoctor ? "" : "hidden"
+                        } mt-1 mb-4`}
+                      >
+                        <div className="relative">
+                          <Listbox.Button className="w-full bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm py-2 px-4 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            {selectedOptions.length === 0
+                              ? "Pilih opsi"
+                              : `${selectedOptions}`}
+                          </Listbox.Button>
+                          <Transition
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Listbox.Options className="absolute z-10 mt-2 w-full bg-white border text-gray-700 border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto focus:outline-none sm:text-sm">
+                              {options.map((option) => (
+                                <Listbox.Option
+                                  key={option._id}
+                                  value={option.name}
+                                >
+                                  {({ active }) => (
+                                    <div
+                                      className={`${
+                                        active
+                                          ? "text-black bg-blue-600"
+                                          : "text-gray-900"
+                                      } cursor-default select-none relative py-2 pl-8 pr-4`}
+                                    >
+                                      <span
+                                        className={`${
+                                          selectedOptions.includes(option.name)
+                                            ? "bg-gray-200"
+                                            : "font-normal"
+                                        } block truncate`}
+                                      >
+                                        {option.name}
+                                      </span>
+                                    </div>
+                                  )}
+                                </Listbox.Option>
+                              ))}
+                            </Listbox.Options>
+                          </Transition>
+                        </div>
+                      </Listbox>
+                      {/* <p className="text-xl text-hijaugelap font-bold">
+                        Jumlah Obat
+                      </p> */}
+                      {/* <input
+                        className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
+                          isLoginDoctor ? "" : "border-0 p-0"
+                        }`}
+                        // value={query.patient_name}
+                        // disabled={isDisabled}
+                        onChange={handleChange("explanation_doctor")}
+                      ></input> */}
+                      <p
+                        className={`text-xl text-hijaugelap font-bold ${
+                          isLoginDoctor ? "" : "hidden"
+                        }`}
+                      >
+                        Catatan Dokter
+                      </p>
+                      <input
+                        className={`mt-1 mb-4 p-2 w-full border-2 border-hijau rounded-md ${
+                          isLoginDoctor ? "" : "hidden"
+                        }`}
+                        value={query.explanation_doctor}
+                        // disabled={isDisabled}
+                        onChange={handleChange("explanation_doctor")}
                       ></input>
                       <p className="text-xl text-hijaugelap font-bold">Date</p>
                       <input

@@ -10,6 +10,7 @@ export default function DoctorDetails(props) {
   const params = useParams();
   const [doctors, setDoctors] = useState({});
   const [patients, setPatients] = useState([]);
+  const [medicines, setMedicines] = useState([]);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -17,15 +18,38 @@ export default function DoctorDetails(props) {
     // subject: "",
     patient_name: "",
     explanation: "",
+    explanation_doctor: "",
     date: "",
     time: "",
     receiver_id: `${params.id}`,
   });
-  const { patient_name, explanation, date, time, receiver_id, textChange } =
-    formData;
+
+  // const [formTrans, setFormTrans] = useState({
+  //   // subject: "",
+  //   pengeluaran: "",
+  //   pemasukan: "",
+  //   instansi: "",
+  //   dokter_id: `${params.id}`,
+  //   obat_id: "",
+  //   deskripsi: "",
+  // });
+
+  // const { pengeluaran, pemasukan, instansi, dokter_id, obat_id, deskripsi } =
+  //   formTrans;
+
+  const {
+    patient_name,
+    explanation,
+    date,
+    time,
+    receiver_id,
+    textChange,
+    appointmentFee,
+  } = formData;
 
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
+    // setFormTrans({ ...formTrans, [text]: e.target.value });
   };
 
   const handleOptionChange = (option) => {
@@ -45,7 +69,6 @@ export default function DoctorDetails(props) {
       };
       console.log(token);
       axios.defaults.headers.common["x-auth-token"] = token;
-      setFormData({ ...formData, textChange: "Submitting" });
       axios
         .post(
           `http://localhost:5000/appointments/create-request`,
@@ -53,9 +76,11 @@ export default function DoctorDetails(props) {
             id_patient: selectedOption.value,
             patient_name: selectedOption.label,
             explanation,
+            explanation_doctor: "",
             date,
             time,
             receiver_id,
+            appointmentFee: doctors.appointmentFee,
           },
           {
             headers: {
@@ -66,6 +91,27 @@ export default function DoctorDetails(props) {
           }
         )
         .then((res) => {
+          // console.log("success");
+          return axios.post(
+            `http://localhost:5001/api/transaction/create`,
+            {
+              pengeluaran: 0,
+              pemasukan: doctors.appointmentFee + 50000,
+              instansi: "front-office",
+              dokter_id: `${params.id}`,
+              // obat_id: 1,
+              deskripsi: explanation,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Headers": "x-access-token",
+                "x-access-token": token,
+              },
+            }
+          );
+        })
+        .then((res) => {
           setFormData({
             ...formData,
             id_patient: "",
@@ -73,9 +119,8 @@ export default function DoctorDetails(props) {
             explanation: "",
             date: "",
             time: "",
+            appointmentFee: "",
           });
-
-          console.log("success");
         })
         .catch((err) => {
           setFormData({
@@ -85,6 +130,7 @@ export default function DoctorDetails(props) {
             explanation: "",
             date: "",
             time: "",
+            appointmentFee: "",
           });
           console.log(err.response);
         });
@@ -101,14 +147,21 @@ export default function DoctorDetails(props) {
       const responsePatients = await axios.get(
         "http://localhost:5000/patients/all-patients"
       );
+      const responseMedicine = await axios.get("http://localhost:9000/");
       const patients = responsePatients.data;
       const formattedOptions = patients.map((patient) => ({
         value: patient._id,
         label: patient.name,
       }));
+      const medicines = responseMedicine.data;
+      // const formattedMedicines = medicines.map((medicine) => ({
+      //   value: medicine._id,
+      //   label: medicine.name,
+      // }));
       // console.log(formattedOptions);
       setOptions(formattedOptions);
       setDoctors(response.data);
+      setMedicines(medicines);
     }
     fetchData();
   }, [params.id]);
