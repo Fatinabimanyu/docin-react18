@@ -149,6 +149,21 @@ export default function MyModal(props) {
 
   const acceptAppointment = (e) => {
     e.preventDefault();
+    axios.put(
+      `http://localhost:9000/636e5d68db78c09599305139/log`,
+      {
+        stock: 1,
+        description: "add from docin",
+        total_payment: 20000,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          // "Access-Control-Allow-Headers": "x-access-token",
+          // "x-access-token": token,
+        },
+      }
+    );
     const reqHeaders = {
       headers: {
         "Content-Type": "application/json",
@@ -157,54 +172,35 @@ export default function MyModal(props) {
       },
     };
     axios.defaults.headers.common["x-auth-token"] = token;
+    axios.put(
+      `http://localhost:5000/appointments/accept/${props.id}`,
+      {
+        status: "accepted",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Headers": "x-access-token",
+          "x-access-token": token,
+        },
+      }
+    );
     axios
       .put(
-        `http://localhost:5000/appointments/accept/${props.id}`,
+        `http://localhost:5000/appointments/${props.id}`,
         {
-          status: "accepted",
+          patient_name: query.patient_name,
+          explanation: query.explanation,
+          explanation_doctor: query.explanation_doctor,
+          date: query.date,
+          time: query.time,
         },
         {
           headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Headers": "x-access-token",
-            "x-access-token": token,
+            "x-auth-token": token,
           },
         }
       )
-      .then((response) => {
-        return axios.put(
-          `http://localhost:5000/appointments/${props.id}`,
-          {
-            patient_name: query.patient_name,
-            explanation: query.explanation,
-            explanation_doctor: query.explanation_doctor,
-            date: query.date,
-            time: query.time,
-          },
-          {
-            headers: {
-              "x-auth-token": token,
-            },
-          }
-        );
-      })
-      .then((response) => {
-        return axios.put(
-          `http://localhost:5000/appointments/${props.id}`,
-          {
-            patient_name: query.patient_name,
-            explanation: query.explanation,
-            explanation_doctor: query.explanation_doctor,
-            date: query.date,
-            time: query.time,
-          },
-          {
-            headers: {
-              "x-auth-token": token,
-            },
-          }
-        );
-      })
       .then((response) => setQuery(response.data));
     props.closeModal();
     toast.success("Appointment berhasil diterima!");

@@ -147,13 +147,13 @@ export default function DoctorDetails(props) {
       const responsePatients = await axios.get(
         "http://localhost:5000/patients/all-patients"
       );
-      const responseMedicine = await axios.get("http://localhost:9000/");
+      // const responseMedicine = await axios.get("http://localhost:9000/");
       const patients = responsePatients.data;
       const formattedOptions = patients.map((patient) => ({
         value: patient._id,
         label: patient.name,
       }));
-      const medicines = responseMedicine.data;
+      // const medicines = responseMedicine.data;
       // const formattedMedicines = medicines.map((medicine) => ({
       //   value: medicine._id,
       //   label: medicine.name,
@@ -216,7 +216,11 @@ export default function DoctorDetails(props) {
               >
                 Pilih Pasien
               </label>
-              <Listbox value={selectedOption} onChange={handleOptionChange}>
+              {/* <Listbox
+                value={selectedOption}
+                onChange={handleOptionChange}
+                id="pasien"
+              >
                 <div className="relative">
                   <Listbox.Button className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
                     <span className="block truncate">
@@ -301,16 +305,16 @@ export default function DoctorDetails(props) {
                     </Listbox.Options>
                   </Transition>
                 </div>
-              </Listbox>
-              {/* <input
+              </Listbox> */}
+              <input
                 type="text"
-                value={subject}
-                onChange={handleChange("subject")}
+                value={patient_name}
+                onChange={handleChange("patient_name")}
                 id="subjek"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Masukkan subjek atau tipe janji temu"
                 required
-              ></input> */}
+              ></input>
             </div>
             <div className="mb-6">
               <label
@@ -373,6 +377,7 @@ export default function DoctorDetails(props) {
               </label>
             </div>
             <button
+              id="btnsubmit"
               type="submit"
               className="rounded-none w-full text-sm font-semibold text-[#EDF6F9] bg-[#0199A7] hover:shadow-lg"
             >

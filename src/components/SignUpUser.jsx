@@ -67,6 +67,7 @@ export default function SignUpForm() {
                 First Name
               </p>
               <input
+                id="firstname"
                 placeholder="Enter your first name"
                 className="mb-[10px] bg-[#878FB533] xl:p-[10px] text-putih p-[5px] w-auto"
                 value={firstName}
@@ -78,6 +79,7 @@ export default function SignUpForm() {
                 Last Name
               </p>
               <input
+                id="lastname"
                 placeholder="Enter your last name"
                 className="bg-[#878FB533] xl:p-[10px] p-[5px] mb-[10px] text-putih"
                 value={lastName}
@@ -87,6 +89,7 @@ export default function SignUpForm() {
           </div>
           <p className="font-bold text-[12px] text-putih mb-[10px]">E-mail</p>
           <input
+            id="email"
             type="email"
             placeholder="Enter your email address"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"
@@ -95,6 +98,7 @@ export default function SignUpForm() {
           ></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Username</p>
           <input
+            id="username"
             type="username"
             placeholder="Enter your username"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"
@@ -103,6 +107,7 @@ export default function SignUpForm() {
           ></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Address</p>
           <input
+            id="alamat"
             type="address"
             placeholder="Enter your address"
             className="mb-[10px] bg-[#878FB533] p-[10px] text-putih"
@@ -111,6 +116,7 @@ export default function SignUpForm() {
           ></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Password</p>
           <input
+            id="password"
             type="password"
             placeholder="Enter your password"
             className="mb-[10px] bg-[#878FB533] p-[10px] text-putih"
@@ -118,6 +124,7 @@ export default function SignUpForm() {
             onChange={(event) => setPassword(event.target.value)}
           ></input>
           <button
+            id="btnsubmit"
             onClick={onSubmit}
             type="button"
             className="rounded-none my-[20px] xl:my-[40px] text-[#EDF6F9] bg-[#0199A7] px-[44px] py-[9px]

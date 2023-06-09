@@ -69,6 +69,7 @@ export default function AddPasien() {
           </p>
           <input
             type="number"
+            id="NIK"
             placeholder="NIK"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] text-black p-[5px] w-auto"
             value={nik}
@@ -78,6 +79,7 @@ export default function AddPasien() {
             Nama Lengkap
           </p>
           <input
+            id="nama"
             placeholder="Nama Lengkap"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] text-black p-[5px] w-auto"
             value={name}
@@ -89,6 +91,7 @@ export default function AddPasien() {
                 Tempat Lahir
               </p>
               <input
+                id="tempatlahir"
                 placeholder="Tempat Lahir"
                 className="bg-[#878FB533] xl:p-[10px] p-[5px] mb-[10px] text-black"
                 value={tempatLahir}
@@ -100,6 +103,7 @@ export default function AddPasien() {
                 Tanggal Lahir
               </p>
               <input
+                id="tanggallahir"
                 type="date"
                 placeholder="Tanggal Lahir"
                 className="bg-[#878FB533] xl:p-[10px] p-[5px] mb-[10px] text-black"
@@ -113,6 +117,7 @@ export default function AddPasien() {
             Jenis Kelamin
           </p>
           <select
+            id="jeniskelamin"
             placeholder="Pilih Jenis Kelamin"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-black border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:border-gray-600 dark:placeholder-gray-400 dark:focus:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={jenisKelamin}
@@ -134,6 +139,7 @@ export default function AddPasien() {
           ></input> */}
           <p className="font-bold text-[12px] text-black mb-[10px]">Alamat</p>
           <input
+            id="alamat"
             type="address"
             placeholder="Alamat"
             className="mb-[10px] bg-[#878FB533] p-[10px] text-black"
@@ -144,6 +150,7 @@ export default function AddPasien() {
             Nomor Telepon
           </p>
           <input
+            id="nohp"
             type="number"
             placeholder="No Handphone"
             className="mb-[10px] bg-[#878FB533] p-[10px] text-black"
@@ -151,6 +158,7 @@ export default function AddPasien() {
             onChange={(event) => setNoHandphone(event.target.value)}
           ></input>
           <button
+            id="btnsubmit"
             onClick={onSubmit}
             type="button"
             className="rounded-none my-[20px] xl:my-[40px] text-[#EDF6F9] bg-[#0199A7] px-[44px] py-[9px]

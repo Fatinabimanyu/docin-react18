@@ -54,6 +54,7 @@ export default function LogInForm() {
           <div className="xl:gap-x-5 flex-col xl:flex-row flex"></div>
           <p className="font-bold text-[12px] text-putih mb-[10px]">E-mail</p>
           <input
+            id="email"
             placeholder="Enter your email address"
             className="mb-[10px] bg-[#878FB533] xl:p-[10px] p-[5px] text-putih"
             value={email}
@@ -61,6 +62,7 @@ export default function LogInForm() {
           ></input>
           <p className="font-bold text-[12px] text-putih mb-[10px]">Password</p>
           <input
+            id="password"
             type="password"
             placeholder="Enter your password"
             className="mb-[10px] bg-[#878FB533] p-[10px] text-putih"
@@ -68,6 +70,7 @@ export default function LogInForm() {
             onChange={(event) => setPassword(event.target.value)}
           ></input>
           <button
+            id="btnSubmit"
             onClick={onSubmit}
             type="button"
             className="rounded-none my-[20px] xl:my-[40px] text-[#EDF6F9] bg-[#0199A7] px-[44px] py-[9px]
