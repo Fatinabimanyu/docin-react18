@@ -68,7 +68,7 @@ function App() {
               </PrivateRoute>
             }
           /> */}
-          <Route path="/*" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
       <ToastContainer />
